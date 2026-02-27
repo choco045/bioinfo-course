@@ -34,8 +34,11 @@ Bioinformatics learning^-^Hope to see progress day by day
 - 探索如何利用共表达网络和miRNA靶向预测寻找潜在的疾病靶点。利用五一长假多看看运用了相关生信作图分析方法的文献^-^
 
 ### 三、Machine Learning & AI（Week 13 - Week 16）
-**Week 9-12**：  
+**Week 13-16**：  
 - 机器学习基础（降维、聚类等经典算法）。  
-- 利用课程提供的 Python（Optional）模块，结合生信数据进行实操训练。
+- 结合生信数据进行实操训练。
 
-**期末 Final Project**：（暂无明确思路，考虑多读文献（））  
+**期末 Final Project**：考虑结合RNA-seq差异表达分析流程与Python机器学习基础，尝试复现一篇高质量临床医学文献中的单细胞或转录组分析图表，探索特定疾病靶点的预测。  
+
+## 学习笔记
+- [Week 1 getting started & set up](notes/week1_notes.md)
