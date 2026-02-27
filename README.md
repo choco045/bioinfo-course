@@ -1,9 +1,9 @@
 # bioinfo-course
 Bioinformatics learning^-^Hope to see progress day by day
 
-**姓名**：姚茗子
-**学号**：2024030045
-**专业**：临床医学类（协和）
+**姓名**：姚茗子  
+**学号**：2024030045  
+**专业**：临床医学类（协和）  
 
 ## 本学期生物信息学学习计划
 ### 整体目标：
