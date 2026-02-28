@@ -15,12 +15,12 @@ Bioinformatics learning^-^Hope to see progress day by day
 - 规范化GitHub repository，开始用Markdown记录本学期学习过程。
 
 **Week 2-4**: 
-- **熟练使用Linux基础命令**（文件操作、权限管理等），能独立在终端执行生信工具命令，要能熟练编写Bash脚本来串联分析步骤。
-- 开始尝试做Basic Analyses。掌握**Blast**的基本原理，能将临床样本的基因序列与数据库比对，分析突变位点；
+- **熟练使用`grep`, `awk`, `sed`, `cut`等Linux基础命令**（文件操作、权限管理等），能独立在终端执行生信工具命令，要能熟练编写Bash脚本来串联分析步骤。
+- 开始尝试做Basic Analyses, 掌握**Blast**的基本原理，能将临床样本的基因序列与数据库比对，分析突变位点；
 
 ### 二、NGS Data Analyses（Week 5 - Week 12）
 **Week 5-6**：
-- 快速上手**R语言的基础与数据可视化（ggplot2）**。
+- 快速上手**R语言的基础与数据可视化（ggplot2）**。（热图、火山图、PCA图等）
 - 掌握Bowtie进行Reads Mapping，并熟练使用bedtools和samtools等工具处理基因组特征数据。
 
 **Week 7-8**：
