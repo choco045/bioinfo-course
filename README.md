@@ -10,11 +10,11 @@ Bioinformatics learning^-^Hope to see progress day by day
 *从了解和练习基本的Linux操作开始，通过生物信息所需的计算语言（Bash, R, Python等）的编程训练，逐步掌握生物信息学在新一代高通量测序数据上的基本分析方法。在实践中不断收获！*  
 
 ### 一、Getting Started & Basic Analyses（Week 1 - Week 4）
-**Week 1**: 
+**Week 1**：
 - 理解各种工具概念，**搭建好环境**；
 - 规范化GitHub repository，开始用Markdown记录本学期学习过程。
 
-**Week 2-4**: 
+**Week 2-4**：
 - **熟练使用`grep`, `awk`, `sed`, `cut`等Linux基础命令**（文件操作、权限管理等），能独立在终端执行生信工具命令，要能熟练编写Bash脚本来串联分析步骤。
 - 开始尝试做Basic Analyses, 掌握**Blast**的基本原理，能将临床样本的基因序列与数据库比对，分析突变位点；
 
@@ -40,5 +40,5 @@ Bioinformatics learning^-^Hope to see progress day by day
 
 **期末 Final Project**：考虑结合RNA-seq差异表达分析流程与Python机器学习基础，尝试复现一篇高质量临床医学文献中的单细胞或转录组分析图表，探索特定疾病靶点的预测。  
 
-## 学习笔记
+## 学习笔记持续更新中
 - [Week 1 getting started & set up](notes/week1_notes.md)
