@@ -84,7 +84,13 @@
 ---
 
 ## Run jobs in a Docker
-
+- Docker：linux的轻量级虚拟机
+- 镜像(image)和容器(container)是docker的两个比较重要的概念。image可以理解成是一个用于创建虚拟机的模板，而container相当于是一个根据image创建出的虚拟机
+- 用docker run新建一个名为 bioinfo_tsinghua 的 container
+  * ```docker exec -it bioinfo_tsinghua bash```  
+  * `docker exec`用于在一个正在运行的_container_中执行命令；`-it`: 交互(interactive, -i)式的运行_container_中的bash命令，并在terminal中显示输入输出(-t)  
+  * 之后即可运行_container_中提供的各种Linux命令；输入`exit`即可回到Power shell。
+  > 每次使用_container_时要检查docker程序是否运行了，否则请双击docker程序图标运行docker程序  
 
 ---
 
