@@ -42,5 +42,5 @@ Bioinformatics learning^-^Hope to see progress day by day
 
 ## 学习笔记持续更新中
 - [Week 1 getting started & set up](notes/week1_notes.md)
-- [Week 2 linux 基本命令](bioinfo-course/notes/week2_notes_1.md)
-- [Week 2 linux Practice Guide](bioinfo-course/notes/week2_notes_2.md)
+- [Week 2 linux 基本命令](notes/week2_notes_1.md)
+- [Week 2 linux Practice Guide](notes/week2_notes_2.md)
