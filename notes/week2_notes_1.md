@@ -34,7 +34,7 @@
    
 - 在窗口中输入`wsl`并回车。这就会直接进入默认的 Linux 发行版（通常是 Ubuntu）。  
 `ymz24@choco:/mnt/c/Users/27978$`  
-- 在D盘下创建一个名为 linux_files 的文件夹，把提供的所有文件（比如 test.gtf）都放到这里面。路径`D:\linux_course`  
+- 在D盘下创建一个名为 linux_files 的文件夹，把提供的所有文件（比如 test.gtf）都放到这里面。路径`D:\linux_files`  
 - WSL(Windows Subsystem for Linux)会自动将你的Windows硬盘驱动器挂载到`/mnt/`目录下。你的C盘对应 `/mnt/c/` ，D盘对应 `/mnt/d/` ，以此类推  
 - 使用`cd`命令切换到你的文件目录：  
 ```bash
