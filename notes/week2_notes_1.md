@@ -38,7 +38,7 @@
 - WSL(Windows Subsystem for Linux)会自动将你的Windows硬盘驱动器挂载到`/mnt/`目录下。你的C盘对应 `/mnt/c/` ，D盘对应 `/mnt/d/` ，以此类推  
 - 使用`cd`命令切换到你的文件目录：  
 ```bash
-cd /mnt/d/linux_course
+cd /mnt/d/linux_files
 ```
 - 然后运行`ls`命令，你就能看到test.gtf等所有文件了。现在可以直接使用之前笔记里学到的`cat`、`grep`、`head`等所有命令来操作这些文件了。  
 ```bash
