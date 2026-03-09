@@ -126,7 +126,7 @@ cp old_file old_file2 # 复制文件
 cp -r old_folder old_folder2  # 复制文件夹，需要加上 -r
 ```
 
-> **注意**：当 DEST 为文件夹且已存在时，会把 SOURCE 整个（包括其自身）复制到 DEST 中
+> **注意**：DEST 即 destination ，目标文件/新文件。当 DEST 为文件夹且已存在时，会把 SOURCE 整个（包括其自身）复制到 DEST 中
 
 ```bash
 mkdir cp_folder
