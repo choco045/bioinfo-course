@@ -241,7 +241,44 @@ cat 1.gtf | awk 'BEGIN{size=0;}$3 =="CDS"{ len=$5-$4 + 1; size += len; print "Si
 cat 1.gtf | awk 'BEGIN{L=0;}$3 =="CDS"{L+=$5-$4 + 1;}END{print L;}'
 #或者利用awk自动初始化的特性:
 cat 1.gtf | awk '$3 =="CDS"{L+=$5-$4 + 1;}END{print L;}'
+```
 
+1. 基础命令（逐步累加并输出中间结果）
+```bash
+cat 1.gtf | awk 'BEGIN{size=0;} $3=="CDS"{ len=$5-$4+1; size+=len; print "Size:", size }' | tail -n 1
+```
+  - **`BEGIN{size=0;}`**：在处理第一行前初始化累加器 `size` 为 0。
+  - **`$3=="CDS"`**：筛选第三列为 `"CDS"` 的行（GTF 特征类型）。
+  - **`len=$5-$4+1`**：计算当前 CDS 的长度（结束 - 开始 + 1，因为 GTF 坐标闭区间）。
+  - **`size+=len`**：累加到 `size` 中。
+  - **`print "Size:", size`**：每处理一个 CDS 就输出一次当前累加值。
+  - **`tail -n 1`**：只保留最后一行（即最终总长度）。
+
+2. 优化版（只在最后输出一次结果，更高效）
+```bash
+cat 1.gtf | awk 'BEGIN{L=0;}$3 =="CDS"{L+=$5-$4 + 1;}END{c}'
+```
+  - **`$3=="CDS"{L+=$5-$4 + 1;}`**：累加所有 CDS 长度，不输出中间值。
+  - **`END{print L;}`**：文件处理完后输出总长度。
+
+3. 直接从文件读取（避免 `cat`）
+```bash
+awk '$3=="CDS"{ total += $5 - $4 + 1 } END{ print total }' 1.gtf
+```
+
+4. 添加条件
+```bash
+awk '$3=="CDS" && $1=="I"{ total += $5 - $4 + 1 } END{ print "Chr1 CDS total:", total }' 1.gtf
+```
+  - 增加 `&& $1=="I"` 条件，只处理第一列为 `I` 的行。
+
+5. 关键点总结
+  - **`BEGIN` 块**：用于初始化变量，只在程序开始时执行一次。
+  - **变量生命周期**：`total` 在 `BEGIN` 中初始化后，在整个处理过程中持续存在，每次匹配行都会更新。
+  - **`END` 块**：在所有行处理完后执行，适合输出最终统计结果。
+  - **GTF 坐标**：第4列（起始）、第5列（结束），长度计算公式 `$5-$4+1`。
+
+```bash
 #计算1号染色体cds的平均长度
 # awk既可从pipe中读取输入，也可从文件中读取输入
 awk 'BEGIN  {s = 0;line = 0;}$3 =="CDS" && $1 =="I"{ s += $5-$4+1;line += 1}END {print "mean="s/line}' 1.gtf
