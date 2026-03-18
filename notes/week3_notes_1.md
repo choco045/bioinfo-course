@@ -1,5 +1,48 @@
 # Basic Analyses
 
+# 目录
+
+## 第一部分：序列比对与 BLAST 算法
+* **1. 序列比对的生物学意义与基本原则**
+* **2. 评分系统 (Scoring Scheme)**
+  * 替换矩阵
+  * 空位罚分模型
+* **3. 基础动态规划比对算法**
+  * Needleman-Wunsch 算法 (全局比对)
+  * Smith-Waterman 算法 (局部比对)
+* **4. 启发式算法：BLAST 核心原理**
+* **5. BLAST 结果的统计学意义**
+  * Bit Score (比特得分)
+  * P-value
+  * E-value (期望值)
+
+## 第二部分：保守性分析与分子进化
+* **1. 同源性的两种核心类别**
+  * 直系同源 (Orthologs)
+  * 旁系同源 (Paralogs)
+* **2. 寻找直系同源基因的方法**
+  * 最佳双向 BLAST 匹配 (BBH)
+  * 基因组同线性分析
+  * 系统发育分析
+
+## 第三部分：基因组学项目与公共数据库资源
+* **1. 重大基因组学与多组学项目**
+  * ENCODE 计划
+  * 千人基因组计划 & UK Biobank
+  * 宏基因组学与古 DNA 分析
+* **2. 国际三大核酸序列数据库**
+  * GenBank / EMBL-Bank / DDBJ
+* **3. NCBI 核心数据与 RefSeq 命名规则**
+  * NM_ / NP_ / NR_ / NC_ 等前缀解析
+* **4. 基因组浏览器与注释体系**
+  * Ensembl 分类体系
+* **5. 蛋白质序列数据库体系**
+  * Swiss-Prot / TrEMBL / UniProt
+* **6. 模式生物专属数据库**
+  * SGD / TAIR / WormBase / FlyBase / MGI / ZFIN
+
+---
+
 ## 第一部分：序列比对与 BLAST 算法核心原理
 
 ### 1. 序列比对的生物学意义与基本原则
