@@ -66,7 +66,7 @@ cd /home/test/blast/
 mkdir output
 ```
 
-### 3b) Pairwise sequence alignment
+### 3b) Pairwise（成对） sequence alignment（双序列比对）
 
 #### Protein sequence alignment
 
@@ -77,6 +77,14 @@ blastp  -query protein/VIM.fasta  -subject protein/NMD.fasta   -out output/blast
 ```
 
 `VIM.fasta` 与 `NMD.fasta` 分别是金属beta酶家族的两个蛋白的序列。
+
+- `blastp` : 这是程序的名字。结尾的 p 代表 protein（蛋白质）。如果你要比对的是氨基酸序列，就必须用这个。
+
+- `-query protein/VIM.fasta` : `-query` 后面接的是你的“提问序列”（路径）。想象你在查字典，这就是你要查的那个单词。
+
+- `-subject protein/NMD.fasta` : `-subject` 后面接的是“目标序列”（路径）。这是你用来对比的参照物。
+
+- `-out output/blastp` : `-out` 后面是你给结果文件起的名字。如果不写这一段，结果会直接刷屏显示在黑框框里，不方便保存。
 
 {% hint style="info" %}
 
@@ -97,6 +105,8 @@ blastn -query dna/H1N1-HA.fasta -subject dna/H7N9-HA.fasta -out output/blastn
 
 `H1N1-HA.fasta` 与 `H7N9-HA.fasta` 是两种流感病毒的序列。
 
+- `blastn` : 结尾的 n 代表 nucleotide（核苷酸/DNA）。原理同上：这里是拿 H1N1 流感病毒的基因和 H7N9 的基因做对比。
+
 ### 3c) Align a sequence to a remote database
 
 我们也可以在命令行搜索ncbi的远程数据库。在网络环境不好的时候容易报错，可以跳过。
@@ -106,6 +116,10 @@ blastn -query dna/H1N1-HA.fasta -subject dna/H7N9-HA.fasta -out output/blastn
 ```bash
 blastp  -query protein/VIM.fasta  -db pdb -remote -out output/blastp_remote
 ```
+
+- `-db pdb` : `-db` 代表 database（数据库）。pdb 是一个专门存放蛋白质结构的国际数据库。
+- `-remote` : 这个参数非常关键！它告诉电脑：“不要在我这台破电脑里找，去 NCBI 的云端服务器找”。
+- 注意：这需要联网，而且如果 NCBI 服务器人多，可能会报错或很慢。
 
 #### 用核酸序列在nt数据库远程进行同源搜索
 
@@ -122,10 +136,10 @@ blastn  -query dna/H1N1-HA.fasta  -db nt -remote -out output/blastn_remote
 ```bash
 makeblastdb -dbtype nucl -in dna/YeastGenome.fa -out database/YeastGenome
 ```
-
-* `-dbtype`: 待建库的类型(核酸:`nucl`,蛋白:`prot`)
-* `-in`: 待建库的序列文件
-* `-out`: 数据库前缀
+* `makeblastdb` : 意思是“制造一个 Blast 数据库”。
+* `-dbtype`: 待建库的类型(核酸:`nucl`,蛋白:`prot`); `-dbtype nucl` : 告诉程序你要建的是核酸库（nucleotide）。
+* `-in`: 待建库的序列文件; `-in dna/YeastGenome.fa` : 输入用来当数据库的原始文件（这里是酵母基因组）。
+* `-out`: 数据库前缀; `-out database/YeastGenome` : 给生成的数据库取个前缀名。
 
 #### Step 2: 比对
 
@@ -137,9 +151,15 @@ blastn -query dna/Yeast.fasta -db database/YeastGenome -out output/Yeast.blastn
 
 ### 4a) View the results
 
+比对完了，你会发现 output/ 文件夹下多了一些文件。
+
 你可以利用 `more`, `less`等命令或者利用`vi`等文本编辑工具查看结果文件。
 
 ### 4b) A better view of fasta file
+
+less -S 文件名: 这是 Linux 里查看长文本的神器。  
+-S 的作用是：如果一行太长，它不会自动换行乱成一团，而是让你通过左右方向键滑动查看，非常整齐。  
+退出请按键盘上的 q  
 
 ```bash
 less -S dna/H1N1-HA.fasta  # chop long lines rather than wrap them (记得按 q 退出）
