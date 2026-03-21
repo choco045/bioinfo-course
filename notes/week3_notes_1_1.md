@@ -204,7 +204,7 @@ MSTRSVSSSSYRRMFGGPGTASRPSSSRSYVTTSTRTYSLGSALRPSTSRSLYASSPGGVYATRSSAVRL
 
 ### 5b) Select database
 
-Select "Non-redundant Protein Sequences (nr)"
+Select "Non-redundant Protein Sequences (nr)" (这是最全的数据库，包含了几乎所有已知的蛋白序列。)
 
 ![](https://4115668567-files.gitbook.io/~/files/v0/b/gitbook-legacy-files/o/assets%2F-LPVsf5VZbQ7h14X29qW%2F-LPVv7obRlTivTDgBNhr%2F-LPVvFfmQOp8DdKXBp1T%2Fblastweb3.png?generation=1540298184180396\&alt=media)
 
