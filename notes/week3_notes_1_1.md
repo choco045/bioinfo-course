@@ -258,6 +258,21 @@ Select "blastp"
 
 ![](https://4115668567-files.gitbook.io/~/files/v0/b/gitbook-legacy-files/o/assets%2F-LPVsf5VZbQ7h14X29qW%2F-LPVv7obRlTivTDgBNhr%2F-LPVvFfuhSj2Y6n78JS1%2Fblastweb7.png?generation=1540298184221099\&alt=media)
 
+
+### 如何写函数
+```
+函数的名字() {
+    # 这里面写你要执行的命令
+    echo "正在执行任务..."
+    命令1
+    命令2
+}
+```
+
+local 是 Bash 中用于在函数内声明局部变量的关键字。当一个变量用 local 声明后，它的作用域仅限于该函数内部，不会影响函数外部的同名变量。
+
+
+
 ## 6) Homework
 
 对于序列`MSTRSVSSSSYRRMFGGPGTASRPSSSRSYVTTSTRTYSLGSALRPSTSRSLYASSPGGVYATRSSAVRL`:
@@ -267,6 +282,52 @@ Select "blastp"
 2\) 请使用 Bash 脚本编程：将上面的蛋白序列随机打乱生成10个， 然后对这10个序列两两之间进行 blast 比对，输出并解释结果。（请上传bash脚本，注意做好重要code的注释；同时上传一个结果文件用来示例程序输出的结果以及你对这些结果的解释。）
 
 > **注：** blast的网站会提供多个mouse的databases，可以任选1个进行比对；也可以重复几次，每次选一个不同的database看看不同的输出结果，可以在作业中比较和讨论一下输出结果不同的原因。
+
+```bash
+#!/bin/bash
+
+# 定义原始序列
+original_seq="MSTRSVSSSSYRRMFGGPGTASRPSSSRSYVTTSTRTYSLGSALRPSTSRSLYASSPGGVYATRSSAVRL"
+
+# 定义函数：打乱字符串
+shuffle_seq() {
+    local seq="$1"
+    local si=0  # start index
+    local L=${#seq}  # 序列长度
+    local ei=$(($L-1))  # end index
+    local shuffled=""
+    # 生成从 0 到 L-1 的整数，随机排序后依次取字符
+    for i in $(seq $si $ei | shuf); do
+        shuffled="${shuffled}${seq:$i:1}"
+    done
+    echo "$shuffled"
+}
+
+# 创建文件夹存放序列
+mkdir -p blast_sequences
+cd blast_sequences
+
+# 生成10条随机打乱的序列，每条保存为独立的 FASTA 文件
+for i in {1..10}; do
+    shuffled=$(shuffle_seq "$original_seq")
+    echo ">shuffled_sequence_$i" > "sequence_$i.fasta"
+    echo "$shuffled" >> "sequence_$i.fasta"
+done
+
+echo "已生成10条随机打乱序列，保存在 blast_sequences/ 目录下"
+
+# 双重循环，对所有 i<j 的序列对进行两两比对，结果汇总到一个文件
+result_file="blast_results.txt"
+> "$result_file"
+for i in {1..10}; do
+    for j in $(seq $((i+1)) 10); do
+        echo "正在比对序列 $i 和序列 $j ..."
+        blastp -query "sequence_$i.fasta" -subject "sequence_$j.fasta" -outfmt 6 >> "$result_file"
+    done
+done
+
+exit 0
+```
 
 3）解释blast 中除了动态规划（dynamic programming）还利用了什么方法来提高速度，为什么可以提高速度。
 
