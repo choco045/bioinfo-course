@@ -313,7 +313,6 @@ for i in {1..10}; do
     echo ">shuffled_sequence_$i" > "sequence_$i.fasta"
     echo "$shuffled" >> "sequence_$i.fasta"
 done
-
 echo "已生成10条随机打乱序列，保存在 blast_sequences/ 目录下"
 
 # 双重循环，对所有 i<j 的序列对进行两两比对，结果汇总到一个文件
@@ -325,6 +324,7 @@ for i in {1..10}; do
         blastp -query "sequence_$i.fasta" -subject "sequence_$j.fasta" -outfmt 6 >> "$result_file"
     done
 done
+echo "比对完成！结果汇总在 blast_results.txt 里。"
 
 exit 0
 ```
