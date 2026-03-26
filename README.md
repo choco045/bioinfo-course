@@ -16,7 +16,7 @@ Bioinformatics learning^-^Hope to see progress day by day
 
 **Week 2-4**：
 - **熟练使用`grep`, `awk`, `sed`, `cut`等Linux基础命令**（文件操作、权限管理等），能独立在终端执行生信工具命令，要能熟练编写Bash脚本来串联分析步骤。
-- 开始尝试做Basic Analyses, 掌握**Blast**的基本原理，能将临床样本的基因序列与数据库比对，分析突变位点；
+- 开始做Basic Analyses, 掌握**Blast**的基本原理，能将临床样本的基因序列与数据库比对，分析突变位点；
 
 ### 二、NGS Data Analyses（Week 5 - Week 12）
 **Week 5-6**：
@@ -43,4 +43,10 @@ Bioinformatics learning^-^Hope to see progress day by day
 ## 学习笔记持续更新中
 - [Week 1 getting started & set up](notes/week1_notes.md)
 - [Week 2 linux 基本命令](notes/week2_notes_1.md)
-- [Week 2 linux Practice Guide](notes/week2_notes_2.md)
+- [Week 2 linux Practice Guide(GTF/GFF)&脚本](notes/week2_notes_2.md)
+- [Week 3 Basic Analyses（blast...）](notes/week3_notes_1.md)
+- [Week 3 Blast](notes/week3_notes_1_1.md)
+- [Week 3 Linux Bash（shell脚本）](notes/week3_notes_2.md)
+- [Week 4 R是什么](notes/week4_notes_1.md)
+- [Week 4 R Basics](notes/week4_notes_1_1.md)
+- [Week 4 NGS](notes/week4_notes_2.md)
