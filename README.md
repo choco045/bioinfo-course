@@ -36,9 +36,7 @@ Bioinformatics learning^-^Hope to see progress day by day
 ### 三、Machine Learning & AI（Week 13 - Week 16）
 **Week 13-16**：  
 - 机器学习基础（降维、聚类等经典算法）。  
-- 结合生信数据进行实操训练。
-
-**期末 Final Project**：考虑结合RNA-seq差异表达分析流程与Python机器学习基础，尝试复现一篇高质量临床医学文献中的单细胞或转录组分析图表，探索特定疾病靶点的预测。  
+- 结合生信数据进行实操训练。 
 
 ## 学习笔记持续更新中
 - [Week 1 getting started & set up](notes/week1_notes.md)
@@ -51,3 +49,5 @@ Bioinformatics learning^-^Hope to see progress day by day
 - [Week 5 R是什么](notes/week5_notes_1.md)
 - [Week 5 R Basics](notes/week5_notes_1_1.md)
 - [Week 5 NGS](notes/week5_notes_2.md)
+- [Week 5 Mapping](notes/week5_notes_2_1.md)
+- [Week 5 Mapping: Genome Browser](notes/week5_notes_2_2.md)
