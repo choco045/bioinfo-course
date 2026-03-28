@@ -85,6 +85,8 @@ aggregate(mpg ~ vs, mtcars, mean)
 
 ---
 
+## 完整细节basics
+
 ### 1c) Use R
 
 * 和bash一样，我们可以交互式的使用R，也可以把代码组织到一个脚本中
