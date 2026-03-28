@@ -4,23 +4,23 @@
 
 1. 环境与准备
 
-- 如何交互式或通过脚本运行R语言
+    - 如何交互式或通过脚本运行R语言
 
-- 如何安装CRAN和Bioconductor的R包 (如 `ggplot2`, `DESeq2`)
+    - 如何安装CRAN和Bioconductor的R包 (如 `ggplot2`, `DESeq2`)
 
 2. R语言数据类型与结构
 
-- 基础数据类型：数值 (`numeric`)、布尔值 (`logical`)、字符 (`character`)、因子 (`factor`)
+    - 基础数据类型：数值 (`numeric`)、布尔值 (`logical`)、字符 (`character`)、因子 (`factor`)
 
-- 核心数据结构：向量 (`Vector`)、矩阵 (`Matrix`)、列表 (`List`)、数据框 (`Data frame`)
+    - 核心数据结构：向量 (`Vector`)、矩阵 (`Matrix`)、列表 (`List`)、数据框 (`Data frame`)
 
 3. 常用操作与统计示例
 
-- 表格数据的读取与保存 (`read.csv`, `write.table`等)
+    - 表格数据的读取与保存 (`read.csv`, `write.table`等)
 
-- 基础统计函数的应用 (均值 `mean`、标准差 `sd`、T检验 `t.test`、方差分析 `aov`)
+    - 基础统计函数的应用 (均值 `mean`、标准差 `sd`、T检验 `t.test`、方差分析 `aov`)
 
-- 数据分组聚合计算 (`aggregate`)
+    - 数据分组聚合计算 (`aggregate`)
 
 ---
 
