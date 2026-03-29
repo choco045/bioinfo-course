@@ -28,7 +28,7 @@ R语言对于科学作图提供了强大的支持。在R语言中主要存在两
 > * [Method 2](#method-2-use-r-in-docker). 如果实在没有配置好rstudio，也可以在Docker 容器中用命令行的方式来画图，优点是无需额外的安装和配置，docker images的下载链接如[附表](https://book.ncrnalab.org/teaching/appendix/appendix-iv.-teaching#teaching-docker)所示。
 >   {% endhint %}
 
-## Method 1: Use Rstudio <a href="#plot-in-rstudio" id="plot-in-rstudio"></a>
+## Use Rstudio <a href="#plot-in-rstudio" id="plot-in-rstudio"></a>
 
 本方案需要先按照我们上节课介绍的方法配置好R语言和rstudio，并加载一个我们提供的文件:
 
@@ -45,133 +45,34 @@ R语言对于科学作图提供了强大的支持。在R语言中主要存在两
 
 > 如果你更喜欢每个文件仅包含一节的内容（一种 plot 类型），可以先打开`index.Rmd`，安装需要的 packages，然后依次打开每一节对应的 `.Rmd` 文件（动画展了第1、2小节对应的 `1.box-plots.Rmd` 和 `2.violin-plots.Rmd`）
 
-## Method 2: Use R in Docker
 
-如果你在使用方案一时遇到了问题，也可以用我们提供的 Docker（里面已经预装好了 R 语言和需要的 packages）。
+---
 
-### (a) Use R in a Docker container <a href="#r-in-container" id="r-in-container"></a>
+### 🎨 RStudio 界面用途详解
 
-首先进入容器：
+RStudio 的界面通常分为四个主要区域（面板），每个区域都有其特定的分工：
 
-```bash
-docker exec -it bioinfo_tsinghua bash
-```
+#### 1. 控制台 (Console) —— 位于左侧（或左下）
+* **含义**：它是 R 的“心脏”。`Console` 翻译过来就是“控制台”或“终端”。
+* **用途**：这是你**直接与 R 沟通**的地方。你在这里输入一行代码，按下回车，R 就会立即执行并返回结果。
+* **特点**：适合进行简单的计算、安装包或临时调试。但在这里写的代码**不会自动保存**，重启 RStudio 后就会消失。
 
-本章的操作均在 `/home/test/plot/` 下进行:
+#### 2. 代码编辑器 (Source) —— 位于左上（你截图中运行脚本的地方）
+* **用途**：编写和保存 R 脚本（`.R`）或 R Markdown（`.Rmd`）文件。
+* **特点**：你可以写下几十行甚至上百行代码，然后点击 `Run` 批量运行。这才是真正做项目、写作业的地方。
 
-```bash
-cd /home/test/plot/
-```
+#### 3. 环境与历史 (Environment / History) —— 位于右上
+* **Environment**：显示你当前 R 运行内存中存储了哪些**对象（Objects）** 。例如你的截图里显示了 `iris` 数据集（150条记录）和绘图对象 `p`。
+* **History**：记录你之前运行过的所有代码命令。
 
-进入容器后，输入`R`回车进入R的交互式环境：
+#### 4. 多功能辅助面板 —— 位于右下
+* **Files**：类似文件资源管理器，方便你查看和打开当前项目下的文件。
+* **Plots**：你绘制的所有图形都会出现在这里，你可以点 `Export` 将其导出为图片或 PDF。
+* **Packages**：列出你电脑上已安装的所有 R 包，勾选即可载入。
+* **Help**：查询函数的帮助文档。
 
-```bash
-R
-```
+---
 
-在实际画图时，依次将下文给出的 R 代码复制到 Terminal 中运行。
-
-### (b) load data, install & library packages
-
-#### Prepare output directory
-
-* 在R语言中也提供了操作文件系统的函数，例如可以用`dir.create`建立一个新的目录
-
-```r
-dir.create('output')
-```
-
-#### Load data
-
-* 用`read.table`函数将表格数据读取到数据框中(上一节中我们已对`read.table`函数进行了介绍)
-
-```r
-# Read the input files
-# “header=T” means that the data has a title, and sep="\t" is used as the separator
-data <-read.table("input/box_plots_mtcars.txt",header=T,sep="\t")
-df <- data[, c("mpg", "cyl", "wt")]
-
-df2 <-read.table("input/histogram_plots.txt",header=T,sep="\t")
-
-df3 <- read.table("input/volcano_plots.txt", header=T)
-
-df4 <- read.table("input/manhattan_plots_gwasResults.txt",header=T,sep="\t")
-
-df5 <-read.table("input/heatmaps.txt",header=T,sep="\t")
-
-# Covert data into matrix format
-# nrow(df5) and ncol(df5) return the number of rows and columns of matrix df5 respectively.
-dm <- data.matrix(df5[1:nrow(df5),2:ncol(df5)])
-
-# Get the row names
-row.names(dm) <- df5[,1]
-
-df6 <- read.table("input/ballon_plots_GO.txt", header=T, sep="\t")
-
-df7 <- read.table("input/box_plots_David_GO.txt",header=T,sep="\t")
-df7 <- df7[1:10,]
-```
-
-#### Install R packages
-
-Docker 中已经装好所需要的 R 包，如果你是在自己电脑上运行，则需要安装 ggplot2, qqman, gplots, pheatmap, scales, reshape2, RColorBrewer 和 plotrix（使用 `install.packages()`, 如 `install.packages('ggplot2')`）。
-
-#### Import R packages
-
-```r
-library(ggplot2) # R语言中最常用的基于grid的可视化工具
-
-# 另外两个比较常见的作图package
-library(gplots) 
-library(plotrix)
-
-library(qqman) # 用于GWAS数据可视化
-
-library(pheatmap) #用于绘制热图,ComplexHeatmap也是另外一个常用的package
-
-library(scales) # map numeric value to color
-library(RColorBrewer) #提供常见的配色方案
-
-# reshape data in R
-library(reshape2) 
-library(plyr) 
-```
-
-### (c) Save & view the plot
-
-这里我们介绍保存作图结果的两种方式:
-
-1. 在作图代码前加上`pdf("path-to-save.pdf")`，代码后加上`dev.off()`。这样R语言会将图片保存到路径`path-to-save.pdf`中。如果想保存成pdf之外的其他格式，可将pdf()换成png()等相应的函数。这种方式对于原生R语言的作图结果和ggplot2的作图结果都是适用的。以下给出了一个简单的例子:
-
-```r
-# 指定输出pdf，路径为output/1.1.Basic_boxplot.pdf，高度宽度均为3
-pdf("output/1.1.Basic_boxplot.pdf", height = 3, width = 3)
-# ggplot从数据框df中读取作图所需的数据
-# aes(x=cyl, y=mpg)告诉ggplot2将数据框中的cyl列作为x轴，mpg列作为y轴
-ggplot(df, aes(x=cyl, y=mpg))+ # 加号在ggplot中意思是在当前的ggplot对象上进行修改
-# draw the boxplot and fill it with gray
-  geom_boxplot(fill="gray")+
-# Use the labs function to set the title and modify x and y
-  labs(title="Plot of mpg per cyl",x="Cyl", y = "Mpg")+
-# Set the theme style
-  theme_classic()
-# Save the plot
-dev.off()
-```
-
-1. 使用`ggplot2`中的`ggsave`函数，它只适用于保存ggplot2以及基于ggplot2的一些package的作图结果
-
-```r
-# Begin to plot
-p <- ggplot(df, aes(x=cyl, y=mpg)) + 
-  geom_boxplot(fill="gray")+
-  labs(title="Plot of mpg per cyl",x="Cyl", y = "Mpg")+
-  theme_classic()
-# Sava as pdf
-ggsave("output/1.1.Basic_boxplot.pdf", plot=p, height = 3, width = 3)
-```
-
-完成作图后，可以将作图结果复制到共享目录中，在宿主机上进行查看
 
 ## 1) Box plots <a href="#box-plot" id="box-plot"></a>
 
