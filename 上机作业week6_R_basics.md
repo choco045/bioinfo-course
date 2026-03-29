@@ -32,7 +32,7 @@ Sepal.Length  Sepal.Width Petal.Length  Petal.Width      Species
 
 ---
 
-### 2. 按Species列分组计算 `Sepal.Length` 的均值和标准差，保存为一个csv文件，提供代码和csv文件的内容。
+## 2. 按Species列分组计算 `Sepal.Length` 的均值和标准差，保存为一个csv文件，提供代码和csv文件的内容。
 
 **R 代码：**
 ```R
@@ -61,7 +61,7 @@ virginica,6.588,0.6358796
 
 ---
 
-### 3. 对不同Species的Sepal.Width进行One way ANOVA分析，提供代码和输出的结果。
+## 3. 对不同Species的Sepal.Width进行One way ANOVA分析，提供代码和输出的结果。
 
 **R 代码：**
 ```R
@@ -78,4 +78,4 @@ Residuals   147  16.96   0.115
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
 
-P 值 (`<2e-16`) 远小于 0.05，表明不同Species的Sepal.Width)存在极其显著的统计学差异。
+P 值 (`<2e-16`) 远小于 0.05，表明不同Species的Sepal.Width存在极其显著的统计学差异。
