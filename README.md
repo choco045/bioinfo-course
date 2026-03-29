@@ -48,6 +48,7 @@ Bioinformatics learning^-^Hope to see progress day by day
 -  Week 4 是我在pre^-^ 接下来就进入R的使用和NGS Analyses啦
 - [Week 5 R是什么](notes/week5_notes_1.md)
 - [Week 5 R Basics](notes/week5_notes_1_1.md)
+- [Week 5 Plot_with_R](notes/week5_notes_1_2.md)
 - [Week 5 NGS](notes/week5_notes_2.md)
 - [Week 5 Mapping](notes/week5_notes_2_1.md)
 - [Week 5 Mapping: Genome Browser](notes/week5_notes_2_2.md)
