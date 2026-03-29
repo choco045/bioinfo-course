@@ -18,23 +18,22 @@ p <- ggplot(iris, aes(x = Species, y = Sepal.Length, fill = Species)) +
   # 绘制小提琴图
   geom_violin(trim = FALSE) + 
   
-  # 设置标题：内容、加粗、居中 (hjust = 0.5)
+  # 设置标题
   labs(title = "Sepal Length Distribution") +
-  theme(
-    plot.title = element_text(hjust = 0.5, face = "bold", size = 16)
-  ) +
   
   # 设置 y 轴范围
   scale_y_continuous(limits = c(3, 9)) +
   
-  # 手动指定填充颜色
+  # 指定填充颜色
   scale_fill_manual(values = c("setosa" = "#C44E52", 
                                "versicolor" = "#55A868", 
                                "virginica" = "#4C72B0")) +
   
-  # 使用经典主题使画面简洁
+  # 使用经典主题，自定义标题格式
   theme_classic() +
-  theme(plot.title = element_text(hjust = 0.5, face = "bold"))
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 16)  # 所有标题自定义放在这里
+  )
 
 # 在 Plots 面板展示图片
 print(p)
