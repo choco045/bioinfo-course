@@ -11,6 +11,8 @@
 
 ## 2. 为什么使用 NGS？
 
+* 之前的sanger测序：设置 A、T、C、G 四个反应管，各含相同模板、引物、dNTP 和 DNA 聚合酶，分别加入一种放射性标记的ddNTP；DNA 聚合酶从引物开始合成新链，随机掺入 ddNTP 导致链终止，生成不同长度的片段混合物；通过变性聚丙烯酰胺凝胶电泳（PAGE）分离四组反应产物，按片段长度从短到长排列，仅相差一个碱基的片段可被清晰分开；将凝胶曝光于 X 光片，根据条带位置读取 DNA 序列。
+* 现代自动化测序（毛细管电泳法）：四种 ddNTP 分别标记不同荧光染料，在同一反应管中进行；使用细毛细管替代凝胶，提高分离效率和速度，短片段先通过检测器；激光激发荧光染料，检测器记录信号，计算机自动转换为 DNA 序列数据。
 * **超高通量**：NGS 采用了大规模平行测序（Massively parallel sequencing）的原理。
 * **产出巨大**：与早期的凝胶系统或毛细管测序相比，NGS 使得单台机器每天产出的 DNA 序列碱基数量（Kilobases per day per machine）呈指数级增长。
 * **成本效益与深度**：在应用靶向测序（Targeted Sequencing）时，NGS 能够有效降低测序成本。
@@ -30,7 +32,7 @@
 
 ### 步骤二：上机测序（Sequencing on a machine）
 * 将带有接头的 DNA 片段附着到流动槽（Attach to flowcell）上。
-* 通过结合引物（Bind to primer）并进行桥式扩增（Bridge Amplification），形成大量的 DNA 簇（Cluster formation）。
+* 通过结合引物（Bind to primer）并进行桥式扩增（Bridge Amplification），形成大量的 DNA 簇（Cluster formation）。（簇生成就是每个DNA片段被扩增的过程，为了增强信号。）
 * 测序过程采用边合成边测序（Sequencing by synthesis）技术，向流动槽中加入带有荧光标记的可逆终止子（labeled reversible terminators）、引物和 DNA 聚合酶。
 * 通过激光激发并进行信号扫描（Signal scanning），系统会逐个循环记录每个 Cluster 中碱基的荧光信号，从而确定序列。
 * NGS 支持单端读取，也支持双端测序（Paired-End Reads），即从 DNA 片段的两端分别进行读取（Read 1 和 Read 2）。
