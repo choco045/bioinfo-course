@@ -1,6 +1,7 @@
 # plot_with_R上机作业
 
-## 基于ggplot2,用violin plot对iris数据集中不同Species的Sepal.Length长度分布进行可视化，并进行如下设置,提交脚本和结果。
+## 题目
+基于ggplot2，用violin plot对iris数据集中不同Species的Sepal.Length长度分布进行可视化，并进行如下设置，提交脚本和结果。  
 * 把图片标题设为"Sepal Length Distribution"，加粗居中(可使用labs函数和theme函数)
 * 把y轴范围设为3到9之间(可使用scale_y_continuous函数)
 * 三个Species的对应的填充颜色分别设为#C44E52, #55A868和#4C72B0(可使用scale_fill_manual函数)
