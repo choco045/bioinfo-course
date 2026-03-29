@@ -405,7 +405,7 @@ t.test(x,y,alternative="less")
 t.test(x,y,altrenative="less",paired=TRUE) 
 ```
 
-* One way ANOVA:
+* One-way ANOVA（单因素方差分析）:
 
 ```r
 # 生成示例数据集
@@ -415,6 +415,12 @@ R <- c(rnorm(20)+1,rnorm(20),rnorm(20)-0.5)
 D <- as.factor(c(rep("A",20),rep("B",20),rep("C",20)))
 # 将数据放到一个数据框中
 table <- data.frame(R=R,D=D)
+```
+`rnorm(n, mean, sd)`：生成 n 个服从正态分布的随机数（这里默认标准差 = 1）  
+`rep(x, times)`：重复 x 若干次，用来给每组打标签  
+`as.factor()`：把分组转成因子类型，R 才会把它当成**分类变量**处理  
+
+```r
 # 用one way anova检验A,B,C三组之间是否存在差异
 summary(aov(R~D,data=table))
             Df Sum Sq Mean Sq F value   Pr(>F)    
@@ -423,10 +429,41 @@ Residuals   57  56.36   0.989
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
+或写成
+```r
+# 拟合方差分析模型
+aov_model <- aov(R ~ D, data = table)
+# 查看模型结果
+summary(aov_model)
+```
+
+`R ~ D`：公式语法，和 t.test 一样！  
+`R`：因变量（你要比较的数值）  
+`D`：自变量（分组变量，因子类型）  
+`~` 读作 “由… 解释”  
+
+`Df`	自由度（Degrees of Freedom）; 分组 D：组数-1= 3-1=2; 残差：总样本数-组数 = 60-3=57  
+`Sum Sq`	平方和（Sum of Squares）- 组间平方和：反映组间差异- 残差平方和：反映组内随机误差  
+`Mean Sq`	均方 = 平方和 / 自由度  
+`F value`	F 统计量 = 组间均方 / 残差均方值越大，说明组间差异越 “显著”  
+`Pr(>F)`	p 值：判断是否显著这里 p=0.000627 < 0.001，标记为***，说明三组均值存在极显著差异  
 
 {% hint style="info" %}
 我们上面用到的`R ~ D`在R语言中被称为公式(formula)，在统计分析和作图中都有广泛的应用。`R ~ D`是一个最简单的公式，"\~"符号左边是因变量，右边是自变量。有兴趣深入了解的同学可参考<https://www.datacamp.com/tutorial/r-formula-tutorial>
 {% endhint %}
+
+和 t 检验的关系  
+t 检验：只能比较 2 组 均值  
+One-way ANOVA：可以比较 3 组及以上 均值  
+当 ANOVA 得到显著结果时，只说明 “至少有两组不一样”，但不知道具体哪两组不一样，需要后续做事后检验（Post-hoc test），比如 TukeyHSD ()
+
+```r
+TukeyHSD(aov_model)
+```
+它会输出每两组之间的差异和 p 值，帮你定位具体差异来源。
+
+多组均值比差异，就用`aov(因变量 ~ 分组, data=数据)`  
+看`Pr(>F)` 小不小于 0.05，小就说明组间有显著差
 
 ### 3c) aggregate
 
