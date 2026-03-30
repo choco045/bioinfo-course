@@ -1,5 +1,16 @@
 # 1.Mapping
 
+## 我的preview
+
+* 测序 reads：高通量测序会把完整基因组打碎成无数短片段，这些短片段就是reads（比如作业里的THA2.fa），格式是 FASTA（.fa），本质是一串 ATCG 字母。
+* 参考基因组：比如酿酒酵母（Yeast）的基因组，已经被完整测序并拼接成一条条染色体（sacCer3是版本号），相当于一张「地图」。
+* mapping（比对 / 映射）：把测序得到的 reads，放到参考基因组的对应位置上，找到每条 read 最可能来自基因组的哪个区域。
+* 比对工具：bowtie和bwa都是专门做这件事的软件，核心是先给参考基因组建索引，再用高效算法快速比对海量 reads，避免暴力逐碱基对比的低效。
+* 输出结果：SAM/BAM格式，存储每条 read 的比对位置、质量、细节等信息，是后续分析的基础。
+
+
+
+* Mapping 就是把测序测得的成千上万条短序列（Reads），像拼图一样贴回到已知的参考基因组（Reference Genome）上。
 * 二代测序数据种类繁多，分析方法也各有差异。在待分析的物种已有参考基因组的情况下，传统的高通量数据分析流程中通常都会把测序数据mapping回参考基因组(对RNA-seq在有一些情况下有的流程也会考虑向转录组mapping)，再用mapping的结果（通常是一个bam格式的文件）进行后续的分析。
 
 ## 0)准备运行环境
@@ -18,15 +29,15 @@ cd /home/test/mapping
 
 ## 2) 文件格式
 
-### 2a) fastq文件
+### 2a) fastq文件（输入）
 
 * fastq文件是存储二代测序测出的reads序列的最常见的一种文件格式。
 * fastq文件除了read的序列信息之外，还记录了每一个碱基的测序质量信息
 * fastq文件中，每四行对应一个read，下面提供了一个简单的例子。
-  * 第1行以"@"开头，"@"后面记录了read id，read id后面还可以空一格，再加上一些相关的描述信息
-  * 第2行记录着read序列
-  * 第3行以"+"开头，通常包含一些相关的描述信息(如果为空，也需要一个"+"作为占位符)
-  * 第4行为ASCII码表示的每个碱基的测序质量，长度和第2行相等
+  * 第1行（ID 信息）以"@"开头，"@"后面记录了read id，read id后面还可以空一格，再加上一些相关的描述信息
+  * 第2行（碱基序列）记录着read序列
+  * 第3行（占位符）以"+"开头，通常包含一些相关的描述信息(如果为空，也需要一个"+"作为占位符)
+  * 第4行（质量值）为ASCII码表示的每个碱基的测序质量，长度和第2行相等
 
 ```
 @EAS54_6_R1_2_1_413_324
@@ -38,11 +49,11 @@ CCCTTCTTGTCTTCAGCGTTTCTCC
 * fastq文件可以很容易的转换成fasta文件，但这一步会丢失测序质量的信息。大部分mapping的软件也支持fasta文件格式作为输入
 * 对于双端测序，两个end的reads通常放在两个fastq文件中，在这两个fastq文件中，对应同一个read pair的两个read次序是一致的(例如对于第一个fastq文件中的第43个record对应的read，与它paired的read位于第二个fastq文件的第43个record)。
 
-### 2b) sam文件
+### 2b) sam文件（输出）
 
 * sam/bam 文件是存储二代测序数据mapping结果的最常见的文件格式, mapping的过程可以简单的理解为一个从fastq文件产生bam文件的过程
 * sam文件为纯文本文件，bam文件为压缩后的二进制文件。在实际工作中bam文件更常用(因为比较节约存储)
-* sam/bam文件一般由两部分组成: 第一部分称为header，它包含了reference序列的名称及长度，mapping结果的排序方式，mapping使用的软件等信息；第二部分为sam/bam文件的主体，包含了reads mapping的信息
+* sam/bam文件一般由两部分组成: 第一部分称为**header** ，它包含了reference序列的名称及长度，mapping结果的排序方式，mapping使用的软件等信息；第二部分为sam/bam文件的主体，包含了reads mapping的信息，即**Alignment body**（每一行代表一条 Read 比对到了哪个染色体、什么位置）
 * 在不考虑multiple alignment(一个read被比对到多个位置)和chimeric alignment(一个read的不同区域被比对到了不同的染色体等)的情况下，一条read mapping的结果通常对应着sam/bam文件主体部分的一行
 * sam/bam文件可以包括unmapped reads，也可以不包括unmapped reads
 * pair end reads mapping的结果通常存储在一个bam文件中
@@ -58,11 +69,11 @@ CCCTTCTTGTCTTCAGCGTTTCTCC
 ```bash
 # 将fasta文件中THA1.fa的reads mapping到酵母基因组上
 bowtie -v 2 -m 10 --best --strata BowtieIndex/YeastGenome -f THA1.fa -S THA1.sam
-# -v 2: 最多容许2个mismatch
-# -m 10: 只输出可以map到不超过10个位置的reads mapping的结果
-# --best --strata: 只汇报最好的一个hit,两个参数需要同时指定
-# BowtieIndex/YeastGenome: 酵母的bowtie index,可以从https://bowtie-bio.sourceforge.net/manual.shtml下载，也可以用bowtie-build从基因组文件自己建立
-# -f THA1.fa: 输入为fasta文件，路径为THA1.fa
+# -v 2: 容错设置。允许这条 Read 在比对时最多容许2个mismatch（2个碱基对不上）
+# -m 10: 多重比对过滤。如果一条 Read 能比对到超过 10 个地方，就把它扔掉（为了保证结果的唯一性）。只输出可以map到不超过10个位置的reads mapping的结果
+# --best --strata: 最优选择策略。告诉程序只给我看比对质量最好的那个结果。只汇报最好的一个hit,两个参数需要同时指定。
+# BowtieIndex/YeastGenome: 酵母的bowtie index,可以从https://bowtie-bio.sourceforge.net/manual.shtml下载，也可以用bowtie-build从基因组文件自己建立。索引文件。就像字典的目录，比对前必须先用参考基因组生成索引。
+# -f THA1.fa: 输入为fasta文件，路径为THA1.fa。指定你要比对的序列文件。
 # -S THA1.sam: 输出文件名为THA1.sam，格式为sam文件
 
 # 将fastq文件e_coli_1000_1.fq中的reads mapping到大肠杆菌基因组上
@@ -81,9 +92,11 @@ bowtie -v 1 -m 10 --best --strata bowtie-src/indexes/e_coli -q e_coli_1000_1.fq 
 * bowtie在mapping中是不考虑insertion和deletion的，而bowtie2和bwa会考虑这些情况。有兴趣了解的同学请参考它们的文档，了解它们的使用方法。
   {% endhint %}
 
+
 ## 4) Genome Browser
 
 see [1.1-genome-browser](https://book.ncrnalab.org/teaching/part-iii.-ngs-data-analyses/1.mapping/1.1-genome-browser)
+
 
 ## 5) 延伸阅读
 
@@ -117,20 +130,26 @@ tar xvzf STAR.mapping.tar.gz
 * 这里提供的是双端测序的数据，单端测序数据的mapping非常类似，请自行参看STAR的文档。大家可以用这里双端测序的一个end(如`ath_1.fastq`)当作单端测序数据进行尝试。
   {% endhint %}
 
-* 建立STAR index:
+* Step1：建立STAR index（建立索引 (Genome Generate)）
 
 ```bash
 mkdir tair10.Pt.STARindex
 STAR-2.7.10a/bin/Linux_x86_64_static/STAR --runMode genomeGenerate --genomeFastaFiles data/tair10.Pt.fa --sjdbGTFfile data/tair10.Pt.gtf --genomeDir tair10.Pt.STARindex --genomeSAindexNbases 7
 # genomeSAindexNbases 是STAR suffix array pre-indexing 的字符串长度, 默认为14
+# --runMode genomeGenerate: 明确告诉 STAR 现在是要建索引。
+# --genomeFastaFiles: 提供参考基因组的 FASTA 序列。
+# --sjdbGTFfile: 非常关键。提供基因注释文件（GTF），告诉 STAR 哪里可能有剪接位点。
+# --genomeDir: 指定存放索引的文件夹。
 # 对于比较小的基因组(例如我们这里只用到了叶绿体序列，可以理解成一个很小的基因组)一般会设成min(14, log2(GenomeLength)/2 - 1)
 ```
 
-* mapping
+* Step2：mapping（正式比对 (Align Reads)）
 
 ```bash
 mkdir output
 STAR-2.7.10a/bin/Linux_x86_64_static/STAR --runMode alignReads --genomeDir tair10.Pt.STARindex --readFilesIn data/ath_1.fastq data/ath_2.fastq --outFileNamePrefix output/ath.aligned
+# --readFilesIn: 输入双端测序的两个文件。
+# --outFileNamePrefix: 设置输出文件的前缀。STAR 会自动生成 .sam 和包含剪接位点信息的 .tab 文件。
 ```
 
 * 在输出目录中，`output/ath.alignedAligned.out.sam`是mapping产生的sam文件，`output/ath.alignedSJ.out.tab`是splice junction的信息，其余两个是STAR输出的日志文件，包括mapping结果的统计信息等。
