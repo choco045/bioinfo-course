@@ -1,10 +1,12 @@
-# `iris` 数据集分析
+# 2_1_上机作业
+
+**姚茗子 2024030045** 
 
 ---
 
 ## 1. `iris` 数据集有几列？每列的数据类型是什么？
 
-`iris` 数据集共有 **5** 列。每列的名称和数据类型如下：
+`iris` 数据集有 **5** 列。每列的数据类型如下：
 
 1. `Sepal.Length` ：numeric
 2. `Sepal.Width` ：numeric
@@ -34,20 +36,17 @@ Sepal.Length  Sepal.Width Petal.Length  Petal.Width      Species
 
 ## 2. 按Species列分组计算 `Sepal.Length` 的均值和标准差，保存为一个csv文件，提供代码和csv文件的内容。
 
-**R 代码：**
+**R代码：**
 ```R
-# 1. 计算均值和标准差
 mean_data <- aggregate(Sepal.Length ~ Species, data = iris, mean)
 sd_data <- aggregate(Sepal.Length ~ Species, data = iris, sd)
 
-# 2. 合并数据框
 result_data <- data.frame(
   Species = mean_data$Species,
   Mean = mean_data$Sepal.Length,
   SD = sd_data$Sepal.Length
 )
 
-# 3. 保存为 CSV 文件 (去除行名和多余的双引号)
 write.csv(result_data, file = "iris_sepal_length_stats.csv", row.names = FALSE, quote = FALSE)
 ```
 
@@ -64,7 +63,7 @@ virginica,6.588,0.635879593274432
 
 ## 3. 对不同Species的Sepal.Width进行One way ANOVA分析，提供代码和输出的结果。
 
-**R 代码：**
+**R代码：**
 ```R
 # 使用 aov() 函数进行单因素方差分析,使用 summary() 查看分析结果
 summary(aov(Sepal.Width ~ Species, data = iris))
