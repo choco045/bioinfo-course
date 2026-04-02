@@ -51,13 +51,13 @@ result_data <- data.frame(
 write.csv(result_data, file = "iris_sepal_length_stats.csv", row.names = FALSE, quote = FALSE)
 ```
 
-**生成的 `iris_sepal_length_stats.csv` ：**
-```csv
-Species	Mean	SD
-setosa	5.006	0.352489687213451
-versicolor	5.936	0.516171147063863
-virginica	6.588	0.635879593274432
-<img width="433" height="145" alt="image" src="https://github.com/user-attachments/assets/4e181fb9-77e4-4b38-8f12-8d03bcbfc208" />
+**查看生成的 `iris_sepal_length_stats.csv` ：**
+```R
+> cat(readLines("iris_sepal_length_stats.csv"), sep = "\n")
+Species,Mean,SD
+setosa,5.006,0.352489687213451
+versicolor,5.936,0.516171147063863
+virginica,6.588,0.635879593274432
 ```
 
 ---
