@@ -65,7 +65,6 @@ virginica,6.588,0.635879593274432
 
 **R代码：**
 ```R
-# 使用 aov() 函数进行单因素方差分析,使用 summary() 查看分析结果
 summary(aov(Sepal.Width ~ Species, data = iris))
 ```
 
