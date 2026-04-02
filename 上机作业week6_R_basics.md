@@ -12,7 +12,7 @@
 4. `Petal.Width` ：numeric
 5. `Species`：factor
 
-**R代码：**
+**完整运行结果：**
 ```R
 > ncol(iris)
 [1] 5
