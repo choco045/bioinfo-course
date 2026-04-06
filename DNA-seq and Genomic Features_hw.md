@@ -1,4 +1,4 @@
-# 2. DNA-seq and Genomic Features_hw
+# DNA-seq and Genomic Features_hw
 
 **姓名：** 姚茗子  
 **学号：** 2024030045
