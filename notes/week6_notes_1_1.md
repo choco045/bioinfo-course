@@ -21,7 +21,7 @@
 **bedtools**是由犹他大学Quinlan实验室开发的一套工具，实现了各种在genomic intervals之间进行比较的功能，是一个非常实用的工具。虽然名字叫做bedtools，但是它对于其他文件格式，如bam，vcf等等也提供了支持。
 
 ### 二代测序数据处理与sam/bam格式
-在传统的二代测序的数据分析中，第一步往往都是把测到的reads mapping回基因组。**sam(Sequence Alignment/Map)**文件是最早由bwa的作者Heng Li设计的一种记录reads mapping信息的文件格式，后来被广泛接受，得到了更普遍的应用。目前各种mapping的工具的结果基本上都是以bam/sam文件格式作为输出的。
+在传统的二代测序的数据分析中，第一步往往都是把测到的reads mapping回基因组。**sam(Sequence Alignment/Map)** 文件是最早由bwa的作者Heng Li设计的一种记录reads mapping信息的文件格式，后来被广泛接受，得到了更普遍的应用。目前各种mapping的工具的结果基本上都是以bam/sam文件格式作为输出的。
 
 sam是一种纯文本文件，bam文件是压缩过的，二进制版本的sam文件。在真实的生物信息分析中，为了节约存储，我们通常以bam文件的形式存储mapping的结果。
 
