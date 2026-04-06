@@ -1,0 +1,9 @@
+{
+	"servers": {
+		"Bioinformatics Tutorial": {
+			"url": "https://book.ncrnalab.org/teaching/~gitbook/mcp",
+			"type": "http"
+		}
+	},
+	"inputs": []
+}
