@@ -1,4 +1,4 @@
-# 1.2-bedtools-samtools_hw
+# bedtools-samtools_hw
 
 **姓名：** 姚茗子  
 **学号：** 2024030045
@@ -6,10 +6,30 @@
 ---
 
 ## （1）我们提供的bam文件`COAD.ACTB.bam`是单端测序分析的结果还是双端测序分析的结果？为什么？(提示：可以使用`samtools flagstat`）
-【解答】
-是双端测序（paired-end）分析的结果。
-**原因：**
-使用 `samtools flagstat COAD.ACTB.bam` 命令查看统计结果时，如果是双端测序，会输出包含 "paired in sequencing", "read1", "read2", "properly paired" 等与双端测序相关的统计信息；单端测序则没有这些统计项或者这些项的数值为0。根据这一定义，如果在 flagstat 的结果中包含大量的 paired in sequencing 记录，即可判断其为双端测序。
+
+`COAD.ACTB.bam`是单端测序分析的结果。**原因：** 使用 `samtools flagstat COAD.ACTB.bam` 命令查看统计结果时，如果是双端测序，会输出包含 "paired in sequencing", "read1", "read2", "properly paired" 等与双端测序相关的统计信息；单端测序则没有这些统计项或者这些项的数值为0。
+
+代码：
+```
+ymz24@choco:/mnt/c/Users/27978$ cd "/mnt/c/Users/27978/Desktop/samtools&bedtools/homework"
+ymz24@choco:/mnt/c/Users/27978/Desktop/samtools&bedtools/homework$ samtools flagstat COAD.ACTB.bam
+185650 + 0 in total (QC-passed reads + QC-failed reads)
+180727 + 0 primary
+4923 + 0 secondary
+0 + 0 supplementary
+0 + 0 duplicates
+0 + 0 primary duplicates
+185650 + 0 mapped (100.00% : N/A)
+180727 + 0 primary mapped (100.00% : N/A)
+0 + 0 paired in sequencing
+0 + 0 read1
+0 + 0 read2
+0 + 0 properly paired (N/A : N/A)
+0 + 0 with itself and mate mapped
+0 + 0 singletons (N/A : N/A)
+0 + 0 with mate mapped to a different chr
+0 + 0 with mate mapped to a different chr (mapQ>=5)
+```
 
 ## （2）查阅资料回答什么叫做"secondary alignment"？并统计提供的bam文件中，有多少条记录属于"secondary alignment?" （提示：可以使用samtools view -f 获得对应secondary alignment的records进行统计）
 【解答】
