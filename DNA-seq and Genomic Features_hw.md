@@ -9,7 +9,7 @@
 
 由于人类基因组测序与组装技术的不断迭代，基因组的大小和基因总数在不同版本中存在微小差异。以两个较具代表性的参考基因组版本为例：
 
-* **经典参考基因组 (GRCh38.p14)**：泛应用于各大数据库的基准注释。在 Ensembl 数据库的最新统计中，若仅计算主干染色体序列（Primary Assembly，排除备选单倍型），其大小约为 **3.1 Gb**（3,099,750,718 bp）；若包含用于体现人群多态性的备选单倍型序列（alt loci）和补丁，其所有重叠群（contig）的总长度则扩展至 **3.4 Gb**。
+* **经典参考基因组 (GRCh38.p14)**：广泛应用于各大数据库的基准注释。在 Ensembl 数据库的最新统计中，若仅计算主干染色体序列（Primary Assembly，排除备选单倍型），其大小约为 **3.1 Gb**（3,099,750,718 bp）；若包含用于体现人群多态性的备选单倍型序列（alt loci）和补丁，其所有重叠群（contig）的总长度则扩展至 **3.4 Gb**。
 * **完整无间隙组装 (T2T-CHM13v1.1)**：这是首个填补了所有着丝粒、端粒和高度重复区域序列的真正完整的人类基因组版本。T2T-CHM13 包含了所有 22 条常染色体和 X 染色体的无间隙组装，其细胞核 DNA 总长度为 3,054,815,472 bp。
 
 为了更直观地展示人类基因组的规模与**基本组成**，下表汇总了基于 Ensembl 数据库最新发布版本与最新 T2T 完整基因组文献的对比数据：
@@ -21,7 +21,6 @@
 | ├── **编码基因 (Coding)** | 19,869 个 | 19,969 个 |
 | ├── **非编码基因 (Non-coding)**| 42,124 个 | 尚未在文献主表中完全细分出非编码总数 |
 | └── **假基因 (Pseudogenes)** | 15,204 个 | / |
-
 
 
 人类基因组的基本组成成分如下表所示：
@@ -38,26 +37,32 @@
 > * **Ensembl 数据**：来源于 Ensembl Release 115（2025年9月发布），底层 Assembly 为 GRCh38.p14，Gencode 版本为 GENCODE 49。
 > * **T2T-CHM13 数据**：来源于 2022 年 4 月发表于《Science》的文献《The complete sequence of a human genome》。
 > * 附图：
-    <img width="2000" height="1502" alt="image" src="https://github.com/user-attachments/assets/c94cb792-f637-4ca0-bed1-e0a8b6662886" />
-    <img width="1200" height="812" alt="image" src="https://github.com/user-attachments/assets/a48f9016-3613-45b4-b85e-2fac84373a93" />
+    <img width="800" alt="image" src="https://github.com/user-attachments/assets/c94cb792-f637-4ca0-bed1-e0a8b6662886" />
+    <img width="800" alt="image" src="https://github.com/user-attachments/assets/a48f9016-3613-45b4-b85e-2fac84373a93" />
 ---
 
 ## 2. 基因中的非编码 RNA的最新注释是多少个了？请详细列一下其中的非编码 RNA 的细分类型的数目，并对主要的非编码 RNA 是做什么的用1-2句解释一下。
 
 根据 **GENCODE 数据库（Version 49 最新版）** 统计，目前基因中的非编码 RNA 基因总数约为 **43,462** 个（包含长链非编码 RNA 与各类小非编码 RNA）。
 
-其主要细分类型及其精确注释数目如下表所示：
+**非编码 RNA 的细分类型及其精确注释数目如下表所示：**
 
-| 非编码 RNA 细分类型 | 英文简称 | 基因注释数量 (Genes) |
+| 非编码 RNA 类型| 基因数目 | 转录本数目|
 | :--- | :--- | :--- |
-| **长链非编码 RNA** | lncRNA | 34,880 |
-| **微小 RNA** | miRNA | 1,879 |
-| **小核 RNA** | snRNA | 1,901 |
-| **核仁小 RNA** | snoRNA | 942 |
-| **核糖体 RNA** | rRNA | 47 |
-| **其他/杂项非编码 RNA**| misc_RNA | 2,207 |
+| **lncRNA** (长非编码 RNA) | 34,880 | 189,152 |
+| **miRNA** (微小 RNA) | 1,879 | 1,879 |
+| **misc_RNA** (其他杂项 RNA) | 2,207 | 2,207 |
+| **snRNA** (小核 RNA) | 1,901 | 1,901 |
+| **snoRNA** (小核仁 RNA) | 942 | 942 |
+| **rRNA** (核糖体 RNA) | 47 | 47 |
+| **Mt_tRNA** (线粒体转运 RNA) | 22 | 22 |
+| **Mt_rRNA** (线粒体核糖体 RNA) | 2 | 2 |
+| **scRNA** (小胞质 RNA) | 49 | 49 |
+| **ribozyme** (核酶) | 8 | 8 |
+| **sRNA** (小 RNA) | 5 | 5 |
+| **vault_RNA** (圆顶体 RNA) | 4 | 4 |
 
-### 主要非编码 RNA 的功能解释
+**主要非编码 RNA 的功能解释：**
 
 1. **长链非编码 RNA (lncRNA)**：
    * 长度大于 200 个核苷酸且不具备编码蛋白质能力的转录本。它们可以通过与 DNA、RNA 或蛋白质相互作用，在表观遗传、转录及转录后等多个水平广泛调控基因的表达。
@@ -80,11 +85,11 @@
 7. **Piwi-相互作用 RNA (piRNA)**
    * 主要在生殖细胞中高表达，通过与 Piwi 蛋白家族结合形成复合物，沉默转座子的活性，以保护生殖细胞基因组的完整性与稳定性。
 
-> **数据出处与时间量化说明：**
-> * 细分数值来源于 **GENCODE Release 49**（当前最新主线版本），数据提取自其官方统计页 (Statistics about the current GENCODE Release)。
+> **数据出处说明：**
+> * 来源于 **GENCODE Release 49**（当前最新主线版本），数据提取自其官方统计页 (Statistics about the current GENCODE Release)。
 > * 本题中 GENCODE 49 统计的 ncRNA 总数 (43,462) 与第一题中 Ensembl 概览表中的非编码基因总数 (42,124) 存在合理范围内的数值差异。这主要是由于不同数据库的网页端统计口径不同所致：Ensembl 主表仅统计了主干组装 (Primary assembly)，并明确排除了部分通读基因 (Readthrough) 和备选单倍型序列；而 GENCODE 的分类标准和包含的序列层级略有不同。此现象在基因组学数据库交叉比对中属于正常现象，本处两题均保留各自官方页面的原始统计数字。
 > * 附图：
-    <img width="2000" height="1582" alt="image" src="https://github.com/user-attachments/assets/8d5b8ec2-e5b9-4f07-930a-83c6f0967b08" />
-    <img width="2000" height="1549" alt="image" src="https://github.com/user-attachments/assets/129d7112-b0b2-4690-9aab-48e837b7b4f2" />
-    <img width="2000" height="1615" alt="image" src="https://github.com/user-attachments/assets/eb09da1d-4e10-4e39-be72-9343555061dd" />
-    <img width="2000" height="1583" alt="image" src="https://github.com/user-attachments/assets/d3957502-a2b6-4dca-b7fc-bf8f2859c123" />
+    <img width="800" alt="image" src="https://github.com/user-attachments/assets/8d5b8ec2-e5b9-4f07-930a-83c6f0967b08" />
+    <img width="800" alt="image" src="https://github.com/user-attachments/assets/129d7112-b0b2-4690-9aab-48e837b7b4f2" />
+    <img width="800" alt="image" src="https://github.com/user-attachments/assets/eb09da1d-4e10-4e39-be72-9343555061dd" />
+    <img width="800" alt="image" src="https://github.com/user-attachments/assets/d3957502-a2b6-4dca-b7fc-bf8f2859c123" />
