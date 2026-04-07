@@ -36,7 +36,7 @@
 > **数据出处与时间量化说明：**
 > * **Ensembl 数据**：来源于 Ensembl Release 115（2025年9月发布），底层 Assembly 为 GRCh38.p14，Gencode 版本为 GENCODE 49。
 > * **T2T-CHM13 数据**：来源于 2022 年 4 月发表于《Science》的文献《The complete sequence of a human genome》。
-> * 附图：
+> * 附图：  
     <img width="800" alt="image" src="https://github.com/user-attachments/assets/c94cb792-f637-4ca0-bed1-e0a8b6662886" />
     <img width="800" alt="image" src="https://github.com/user-attachments/assets/a48f9016-3613-45b4-b85e-2fac84373a93" />
 ---
@@ -88,7 +88,7 @@
 > **数据出处说明：**
 > * 来源于 **GENCODE Release 49**（当前最新主线版本），数据提取自其官方统计页 (Statistics about the current GENCODE Release)。
 > * 本题中 GENCODE 49 统计的 ncRNA 总数 (43,462) 与第一题中 Ensembl 概览表中的非编码基因总数 (42,124) 存在合理范围内的数值差异。这主要是由于不同数据库的网页端统计口径不同所致：Ensembl 主表仅统计了主干组装 (Primary assembly)，并明确排除了部分通读基因 (Readthrough) 和备选单倍型序列；而 GENCODE 的分类标准和包含的序列层级略有不同。此现象在基因组学数据库交叉比对中属于正常现象，本处两题均保留各自官方页面的原始统计数字。
-> * 附图：
+> * 附图：  
     <img width="800" alt="image" src="https://github.com/user-attachments/assets/8d5b8ec2-e5b9-4f07-930a-83c6f0967b08" />
     <img width="800" alt="image" src="https://github.com/user-attachments/assets/129d7112-b0b2-4690-9aab-48e837b7b4f2" />
     <img width="800" alt="image" src="https://github.com/user-attachments/assets/eb09da1d-4e10-4e39-be72-9343555061dd" />
