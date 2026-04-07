@@ -22,7 +22,7 @@
 | ├── **非编码基因 (Non-coding)**| 42,124 个 | 尚未在文献主表中完全细分出非编码总数 |
 | └── **假基因 (Pseudogenes)** | 15,204 个 | / |
 
-<img width="1000" height="1502" alt="image" src="https://github.com/user-attachments/assets/c94cb792-f637-4ca0-bed1-e0a8b6662886" />
+<img width="2000" height="1502" alt="image" src="https://github.com/user-attachments/assets/c94cb792-f637-4ca0-bed1-e0a8b6662886" />
 
 人类基因组的基本组成成分如下表所示：
 
