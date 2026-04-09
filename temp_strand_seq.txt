@@ -1,0 +1,398 @@
+=== Page 1 ===
+1
+NGS - Basic
+Next-generation Sequencing
+Strand Specific Seq.
+
+=== Page 2 ===
+Adapter
+• Flow-cell binding site : Used to combine with adapters of the flow-cell
+• Index : Used to distinguish different samples
+• Primer binding site : Used to PCR amplification & Decide which
+sequence to sequence first
+Insert : Different gene fragments to be sequenced
+5’
+3’
+3’
+5’
++
+-
+Adapter1 Adapter2	Insert
+Paired-end Sequencing
+Adapter1→
+reads1.fastq
+Seq 1
+Seq 2
+Seq 3
+Seq 4
+…
+Adapter2→
+reads2.fastq
+Seq 1’
+Seq 2’
+Seq 3’
+Seq 4’
+…
+Seq 1
+Seq 1’
+File 1 File 2
+
+=== Page 3 ===
+Anti-
+Transcription
+Reverse transcription
+(1st cDNA synthesis)
+2nd cDNA synthesis
+1st cDNA
+2nd cDNA
+1st cDNA
+Ligation	Adapter1 Adapter2
+We lost the strand information (sense or antisense
+strand) for RNA or DNA methylation during libraries
+preparation
+5’
+3’ 5’
+3’
+5’
+3’ 5’
+3’
+PCR
+amplificatio
+n
+PCR
+amplificatio
+n
+RNA
+5’
+3’ 5’
+3’
+Non-strand-specific Library
+(add adaptors to double stranded DNAs)
+RNA
+Add A at 3' end
+Adapter1 sequence + 1st cDNA sequence
+Adapter2 sequence + 2nd cDNA sequence
+5’
+3’ 5’
+3’
+Adapter1	Adapter2
+If RNA
+Adapter1 sequence + 2nd cDNA sequence
+Adapter2 sequence + 1st cDNA sequence
+5’
+3’ 5’
+3’
+Adapter1→ reads1.fastq
+Adapter2→ reads2.fastq
+2nd cDNA sequence
+1st cDNA sequence
+2nd cDNA sequence
+1st cDNA sequence
+
+=== Page 4 ===
+Antisense RNA
+Reads all assigned to Gene A
+5’
+3’ 5’
+3’
+5’
+3
+’
+5’
+3
+’
+Reads all assigned to Gene A or B?
+We need strand-specific sequencing
+method for
+1. Accurately identify anti-sense transcripts
+with potential regulatory roles
+2. Find some new genes without annotation
+Joshua Z Levin et al. Nature Methods,2010
+
+=== Page 5 ===
+3' adapter ligation
+5' adapter ligation
+RNA from GeneA
+Reverse transcription
+PCR amplification
+Adapter
+1
+Adapter2
+Adapter2	Adapter
+1
+Adapter
+1
+Adapter2
+5’
+3’
+5’
+3’
+5’
+3’
+5’
+3’
+5’ 3
+’
+5’ 3’
+Transcription
+5’
+3’ 5’
+3’
+Strand-specific Library
+(add adaptors to single stranded RNAs)
+1st cDNA sequence
+2nd cDNA sequence
+1st cDNA sequence
+Adapter2
+Adapter1→ reads1.fastq
+Adapter2→ reads2.fastq
+Adapter 1 sequence
++ 2nd cDNA sequence (sense)
+Adapter2 sequence
++ 1st cDNA sequence (antisense)
+5’
+3’ 5’
+3’
+Counting mapped Reads
+2nd cDNA sequence
+1st cDNA sequence
+
+=== Page 6 ===
+Another kind of strand-specific library
+dUTP method
+Reverse transcription
+1st cDNA
+2nd cDNA synthesis with dUTP
+& Y-shape adapter ligation
+dUTP degradation
+size selection & PCR
+5’
+3
+’
+5’
+3
+’
+Adapter
+1
+Adapter
+1
+Adapter
+2
+Adapter
+2
+5’ 3
+’
+5’
+5
+’
+3
+’
+3
+T	T	T
+Adapter1
+RNA from
+GeneA
+Transcription
+5’
+3
+’
+5’
+3
+’
+5’
+3
+’
+Adapter 1 sequence
++ 1st cDNA sequence (antisense)
+Adapter2 sequence
++ 1st cDNA sequence (sense)
+Adapter1→ reads1.fastq
+Adapter2→ reads2.fastq
+2nd cDNA sequence
+1st cDNA sequence
+
+=== Page 7 ===
+Summary
+Ligation method & dUTP method
+Ligation method
+Adapter 1 sequence
++ 2nd cDNA sequence (sense)
+Adapter2 sequence
++ 1st cDNA sequence (antisense)
+5’
+3’ 5’
+3’
+2nd cDNA sequence
+1st cDNA sequence
+Adapter1→ reads1.fastq
+(sense)
+Adapter2→ reads2.fastq
+(antisense)
+5’
+3
+’
+5’
+3
+’
+Adapter1
+Adapter 1 sequence
++ 1st cDNA sequence (antisense)
+Adapter2 sequence
++ 1st cDNA sequence (sense) 2nd cDNA sequence
+1st cDNA sequence
+dUTPs method
+Adapter1→ reads1.fastq
+(antisense)
+Adapter2→ reads2.fastq
+(sense)
+read1 mapped to ‘+’ strand  parental gene on ‘+’ strand
+read2 mapped to ‘-‘ strand  parental gene on ‘+’ strand
+read1 mapped to ‘-‘ strand  parental gene on ‘-‘ strand
+read2 mapped to ‘+’ strand  parental gene on ‘-‘ strand
+read1 mapped to ‘-‘ strand  parental gene on ‘+’ strand
+read2 mapped to ‘+’ strand  parental gene on ‘+’ strand
+read1 mapped to ‘+’ strand  parental gene on ‘-‘ strand
+read2 mapped to ‘-‘ strand  parental gene on ‘-‘ strand
+
+=== Page 8 ===
+5’
+3’ 5’
+3
+’
+3
+2
+1
+1’
+2’
+3’
+4’
+4
+Case Study: Calculate RNA abundance
+Counting mapped reads
+Adapter1→
+reads1.fastq
+Seq 1
+Seq 2
+Seq 3
+Seq 4
+…
+Adapter2→
+reads2.fastq
+Seq 1’
+Seq 2’
+Seq 3’
+Seq 4’
+…
+File 1 File 2
+Raw reads we got
+(what we observed):
+if Method = Standard illumina, then FeatureCounts option: -s 0, Gene A’s raw counts = (3+1)+(3+1) = 8
+elsif Method = Ligation, then FeatureCounts option: -s 1, Gene A’s raw counts = 3+3 = 6
+elsif Method = dUTP or PICO, then FeatureCounts option: -s 2, Gene A’s raw counts = 1+1 = 2
+We calculate Gene A’s raw counts as:
+mapping
+Mapping Results
+
+=== Page 9 ===
+Parameter Table for Different Libraries
+Library preparation
+method / Kit
+Reads
+message Software Name
+cufflinks
+Tophat
+Trinity hisat2 RseQc HTSeq RSEM eXpress featureCounts
+Non-
+strand-
+specific
+Standard illumina Non-specific --library-type
+fr-unstranded
+Not
+needed
+Not
+needed - stranded --
+no 0.5 Not
+needed -s 0
+Strand
+Specific
+Directional
+illumina(Ligation),Strandard
+SOLiD
+reads1:
+sense
+library-type
+fr-
+secondstrand
+--
+SS_lib_tpy
+e
+FR
+--rna-
+strandedn
+ess FR
+++,--
+(SE)1++,1
+--,2+-,2-
++(PE)
+stranded --
+yes
+1 --fr-
+stranded
+-s 1
+ScriptSeq v2 RNA-Seq
+Library Preparation Kit
+Encore Complete RNA-Seq
+Library Systems
+NuGEN SoLo
+All dUTP methods、NSR、
+NNSR
+reads1:
+antisense
+library-type
+fr-firststrand
+--
+SS_lib_tpy
+e
+RF
+--rna-
+strandedn
+ess RF
++-,-
++(SE)1+-
+,1-
++,2++,2--
+(PE)
+stranded --
+reverse
+0 --rf-
+stranded
+-s 2
+TruSeq Stranded Toal RNA
+Sample Prep Kit
+TruSeq Stranded mRNA
+Sample Prep Kit
+NEB Ultra Directional RNA
+Library Prep Kit
+SMARTer Stranded Total
+RNA(pico) V2
+Agilent SureSelect Strand-
+Specific
+
+=== Page 10 ===
+RseQC
+The software includes infer_experiment.py ==> can infer strandness from RNA-seq reads
+Mapping your RNA-seq reads to the selected reference genome as if they were non-strand specific using Bowtie2
+The alignment is then compare to reference annotation to infer the strandness of reads
+1.For non-strand specific experiment the ratio of explanations should be close to 50:50.
+2.For strand specific experiments there are two scenarios:
+(1)Reads in file 1 are always on the same strand as the gene;
+(2)Reads in file 2 are always on the same strand as the gene.
+(RSeQC: An RNA-seq Quality Control Package)
+Download
+： http://rseqc.sourceforge.net/
+What if we do not know the library preparation method?
+
+=== Page 11 ===
+11
+Thank you
+for listening

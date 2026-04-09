@@ -1,0 +1,1178 @@
+=== Page 1 ===
+1
+NGS Data
+Next-generation Sequencing
+Genomic Features
+Expression Data
+Network Study
+RNA Structure
+02 RNA-seq
+03 ChIP-seq
+01 DNA-seq
+04 CLIP-seq
+
+=== Page 2 ===
+2
+02 RNA-seq
+1. Expression Data
+2. Expression Analysis
+3. Clustering & Co-expression Network
+4. GO and KEGG
+5. Enrichment Analyses
+NGS Data
+Next-generation Sequencing
+
+=== Page 3 ===
+The basic way of eukaryotic gene expression
+3
+
+=== Page 4 ===
+Gene expression
+Next-generation sequencing or microarray can measure gene expression level of tens of
+thousands of genes at once.
+– to measure the absolute mRNA abundance in the sample
+– to measure the difference between two samples, or after perturbation e.g. DNA
+damage, starvation, heat shock, or small molecules (drugs)
+4
+1. RT-qPCR
+2. Array
+3. Sequencing (RNA-seq)
+
+=== Page 5 ===
+1. RT – qPCR
+5
+Quantify and
+validate
+individual
+genes’
+expression
+level
+
+=== Page 6 ===
+➢ Qualitative information extraction：P/A/M（Present/Absent/Marginal）
+➢ Quantitative information extraction: based on the probe set after the
+summary of the genetic level of fluorescence signal intensity values
+2. Array
+In situ synthesis chip
+6
+
+=== Page 7 ===
+Chua et al., 2004
+Gene
+expression
+clustering
+reveal
+functional
+similarity
+7
+Cluster label
+amino acid metabolism
+arginine biosynthesis
+arginine catabolism
+aromatic AA metabolism
+asparagine biosynthesis
+branched chain AA synth
+lysine biosynthesis
+methionine biosynthesis
+sulfur AA tnsprt, metab
+adenine biosynthesis
+aldehyde metabolism
+biotin biosynthesis
+citrate metabolism
+ergosterol biosynthesis
+fatty acid biosynthesis
+gluconeogenesis
+NAD biosynthesis
+one-carbon metabolism
+pyridoxine metabolism
+thiamin biosynthesis 1
+thiamin biosynthesis 2
+hexose transport
+sodium ion transport
+polyamine transport
+nucleocytoplasmic transport
+ribosome/RNA biogenesis
+ribosomal proteins
+translational elongation
+protein folding
+secretion
+protein glycosylation
+vesicle-mediated transport
+proteasome
+vacuole fusion
+mitoribosome/respiration
+Mitochond. electron trans.
+iron transport/TCA cycle
+Chromatin/transcription
+histones
+MCM2/3/6/CDC47
+DNA replication
+mitotic cell cycle
+CLB1/CLB6/BBP1
+cytokinesis
+development
+pheromone response
+conjugation
+sporulation/meiosis
+response to oxidative stress
+stress/heat shock
+Sample genes
+TRP4, HIS3
+ARG1, ARG3
+CAR1, CAR2
+ARO9, ARO10
+ASN1, ASN2
+ILV1,2,3,6
+LYS2, LYS9
+MET3,16,28
+MUP1, MHT1
+ADE1,4,8
+AAD4,14,16
+BIO3,4
+CIT1,2
+ERG1,5,11
+FAS1,FAS2
+PGK1, TDH1,2,3
+BNA4,6
+GCV1,2,3
+SNO1, SNZ1
+THI5,12
+THI2,20
+HXT4,GSY1
+ENA1,2,5
+TPO2,3
+KAP123,NUP100
+MAK16,CBF5
+RPS1A,RPL28
+TEF1,2
+SSA1,HSP60
+VTH1,KRE11
+ALG6,CAX4
+VPS5,IMH1
+RPN6,RPT5
+VTC1,3,4,PHO84
+MRPL1,MRPS5
+ATP1,COX4
+FRE1,FET3
+SNF2,CHD1,DOT6
+HTA1,HHF1
+MCM2,3,6
+RFA1,POL12
+SPC110,CIN8
+CLB1,6
+CTS1,EGT2
+PAM1,GIC2
+FUS3,FAR1
+CIK1,KAR3
+SPO11,SPO19
+GDH3,HYR1
+HSP104,SSA4
+Candidate regulator
+GCN4
+ARG80/81
+ARG80/81/UME6/RPD3
+ARO80
+GCN4/HAP1/HAP2
+LEU3, GCN4
+LYS14
+CBF1, MET28, MET32
+MET31,MET32
+BAS1, BAS2, GCN4
+RTG3
+ECM22/UPC2
+INO4
+GCR1
+THI2/THI3
+THI2/THI3
+GCR1
+NRG1,MIG1
+HAA1
+RRPE-binding factor
+PAC/RRPE-binding factors
+HAC1,ROX1
+RLM1
+XBP1
+RPN4
+PHO4
+HAP2/3/4/5
+MAC1/RCS1/AFT1/PDR1/3
+HIR1,HIR2
+ECB
+MCB
+HCM1
+FKH1
+ACE2,SWI4
+MATALPHA2,STE12
+KAR4
+NDT80
+ROX1,MSN2,MSN4
+MSN2,MSN4
+249 genes
+1,226 genes
+424 experiments
+2. Array
+
+=== Page 8 ===
+During the past 20 years, three different high-throughput gene expression
+trend of the application of measurement technology
+8
+
+=== Page 9 ===
+RNA Library Target Minimum RNA input Purification/
+rRNA depletion
+Poly(A)+ RNA-seq mRNA,
+polyadenylated lncRNAs
+100ng for total RNA,
+10ng for purified RNA Oligo-dT priming
+Small RNA-seq Small RNA
+(miRNA, piRNA, …) 100ng Size selection
+Total RNA-seq Whole transcriptome 100ng Ribo-Zero Kit
+3. RNA-seq
+Different RNA-seq Libraries
+9
+
+=== Page 10 ===
+Poly-A V.S. Small RNA-seq
+By default, small RNA-seq has strand
+information
+By default, (poly-A) RNA-seq has no
+strand information, unless special
+protocol used (e.g. dUTP)
+(poly-A) RNA-seq small RNA-seq
+
+=== Page 11 ===
+Sequencing methods review. Illumina
+Poly-A V.S. “Total” RNA-seq
+Total RNA-seq (rRNA depletion)
+Polyadenylated RNA-seq (polyA selection)
+11
+
+=== Page 12 ===
+How many rRNA copies in the genome and in the cell?
+Yeast:
+• 150 rrn (encoding the rRNA) gene copies in the genome;
+• Under fast exponential growth it is estimated to harbor about 200,000 ribosomes in the cell
+Human:
+• 200 copies of the rrn genes in the genome
+
+=== Page 13 ===
+Christoph Ziegenhain , et al. Molecular cell. 2017
+Simone Picelli , et al. Nature protocols. 2014
+Single cell RNA-seq
+SMART-seq:
+more popular
+13
+https://lulab.gitbook.io/docs/wet-lab-
+guide/wetlab_training/faq#what-is-tso
+
+=== Page 14 ===
+Low-input RNA-seq Libraries
+(single cell, exRNA-seq)
+SMARTer Kit Target Minimum RNA
+input
+Purification/
+rRNA depletion Methods
+SMARTer kit PolyA RNA 100pg After Oligo-dT
+priming
+Template Switching
+(+Tn5)
+SMARTer smRNA
+kit Small RNA 1ng Size selection Add 3` polyA
+SMARTer Stranded
+RNA Kit Total RNA 100pg After rRNA-
+depleted Random primer
+SMARTer Stranded
+RNA Kit - Pico Total RNA 250pg Remove ribosomal
+cDNA Random primer
+14
+
+=== Page 15 ===
+15
+Smart-seq-total
+VASA-plate
+VASA-drop
+SUPeR-seq
+MATQ-seq
+Plate based Droplet based
+mouth pipetted
+https://mp.weixin.qq.com/s/Dqqi-AQN7riuuxw8WVDzFQ
+Cell Sorting
+
+=== Page 16 ===
+Gene expression database
+Database The database content
+Gene Expression Omnibus
+（GEO）
+By far the most commonly used gene
+expression data（NCBI）
+Expression Atlas The European centre for bioinformatics
+gene expression database
+SMD Stanford gene expression database
+RNA-Seq Atlas Normal tissue of gene expression profile
+data
+GEPdb Genotype and phenotype and gene
+expression
+GXD Mouse development gene expression
+information
+EMAGE Mouse embryonic expression of space and
+time information
+AGEMAP The gene expression data aging rats 16
+
+=== Page 17 ===
+Disease related gene expression database
+Database The database content
+GENT The expression of tumor tissue and normal
+tissue
+ParkDB Parkinson's disease gene expression
+database
+cMAP Small molecule compounds affect human
+cells gene expression
+Anticancer drug gene
+expression database
+Anticancer compounds of gene expression
+data
+CGED Cancer gene expression database
+(including clinical information)
+17
+
+=== Page 18 ===
+Databases and Servers
+18
+https://lulab2.gitbook.io
+
+=== Page 19 ===
+Highlight
+Different RNA-seq Libraries
+RNA Library Target Minimum RNA input Purification/
+rRNA depletion
+Poly(A)+ RNA-seq mRNA,
+polyadenylated lncRNAs
+100ng for total RNA,
+10ng for purified RNA Oligo-dT priming
+Small RNA-seq Small RNA
+(miRNA, piRNA, …) 100ng Size selection
+Total RNA-seq Whole transcriptome 100ng Ribo-Zero Kit
+
+=== Page 20 ===
+Highlight
+Sequencing methods review. Illumina
+Libraries for long RNA-seq
+Total RNA-seq (rRNA depletion)
+Polyadenylated RNA-seq (polyA selection)
+
+=== Page 21 ===
+Highlight
+Christoph Ziegenhain , et al. Molecular cell. 2017
+Simone Picelli , et al. Nature protocols. 2014
+SMART-seq:
+more popular
+Single cell RNA-seq
+
+=== Page 22 ===
+22
+High-throughput Genomics Data
+02 RNA-seq
+1. Expression Data
+2. Expression Analysis
+3. Clustering & Co-expression Network
+4. GO and KEGG
+5. Enrichment Analyses
+
+=== Page 23 ===
+Expression Data Analysis
+• Preprocessing
+Normalization methods for qPCR data
+Normalization methods for Array data
+Normalization methods for RNA-seq data
+• Inferential statistics
+t-test, Wilcoxon test, ANOVA, …
+23
+
+=== Page 24 ===
+RT-qPCR to quantify individual gene’s expression level
+RT-qPCR
+• Relative low throughput compare with RNA-seq
+• Low cost, turn-over time, gold standard in clinical testing, such as COVID-19 testing
+• A common method for differential expression genes validation
+Ct values are not comparable among samples due to:
+• True biological difference
+• RNA input bias
+• Experimental bias
+• Other technical issues and batch effect
+→ Normalization of Ct is needed.
+quantify result: Ct value
+Courtesy of Yu Li, Yuhuan Tao and Hao-yu Zhang
+
+=== Page 25 ===
+Internal Control V.S. External Control (spike-in)
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●	
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●	
+●
+●
+●
+●
+●	
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●	
+●
+●
+●
+●	
+●
+●
+●
+● ●
+●
+●
+●	●
+●
+●
+●
+● 	●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●	
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●	●	
+●
+●
+●
+●
+●	
+●
+● 	●
+●
+●
+●
+●	
+●
+●
+●
+●
+●
+●
+●
+●	
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●	
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●	
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●	●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●	
+●
+●
+●
+●
+●
+●
+●
+●
+●
+● ●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+● 	●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●	
+●
+●	
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●	
+●
+●
+●	
+●	
+●
+●
+●
+●
+● ●	●
+●
+●
+●
+●
+●
+R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	R = 0.895	0
+2500
+5000
+7500
+0.0e+00 	2.5e+06 	5.0e+06 	7.5e+06 	1.0e+07
+Total_counts
+GAPDH
+ 	colour
+●
+●
+●
+●
+●
+●
+CRC
+ESCA
+HCC
+LUAD
+NC
+STAD
+GAPDH’s reads is highly correlated
+with total counts/reads
+Internal control
+Endogenous housekeeping genes, stably
+expressed
+e.g. ACTB, GAPDH and miR-16
+- ΔCt = - ( Ct(target) - Ct(reference) )
+External control (spike-in)
+Externally add a certain amount of RNA (Artificial
+synthesized)
+e.g. ERCC and cel-miR-39
+thermofisher.com
+Lu Lab in-house data
+When endogenous genes are not
+stably expressed or their
+abundance are far lower than
+target genes → Per μg
+Per μl
+Per μg
+Courtesy of Yu Li, Yuhuan Tao and Hao-yu Zhang
+
+=== Page 26 ===
+Expression Data Analysis
+• Preprocessing
+Normalization methods for qPCR data
+Normalization methods for Array data
+Normalization methods for RNA-seq data
+• Inferential statistics
+t-test, Wilcoxon test, ANOVA, …
+26
+
+=== Page 27 ===
+6
+27
+
+=== Page 28 ===
+array
+log signal intensity
+array
+log signal intensity
+Histograms of raw
+intensity values for 14
+arrays (plotted in R)
+before and after
+normalization
+28
+
+=== Page 29 ===
+Normalization
+Median Normalization
+Quantile normalization
+29
+To quantile-normalize a test distribution to a reference distribution of the same length, sort the test
+distribution and sort the reference distribution. The highest entry in the test distribution then takes the
+value of the highest entry in the reference distribution, the next highest entry in the reference
+distribution, and so on, until the test distribution is a perturbation of the reference distribution.
+To quantile normalize two or more distributions to each other, without a reference distribution, sort as
+before, then set to the average (usually, arithmetical mean) of the distributions. So the highest value
+in all cases becomes the mean of the highest values, the second highest value becomes the mean of
+the second highest values, and so on.
+https://en.wikipedia.org/wiki/Quantile_normalization
+https://www.jianshu.com/p/1458164604c5
+
+=== Page 30 ===
+30
+2 1 3
+3 2 4
+4 4 6
+5 4 8
+Gene lab_1 lab_2 lab_3
+A 5 4 3
+B 2 1 4
+C 3 4 6
+D 4 2 8
+(2 1 3)/3 = 2.00 = rank i
+(3 2 4)/3 = 3.00 = rank ii
+(4 4 6)/3 = 4.67 = rank iii
+(5 4 8)/3 = 5.67 = rank iv
+A 5.67 4.67 2.00
+B 2.00 2.00 3.00
+C 3.00 4.67 4.67
+D 4.67 3.00 5.67
+A iv iii i
+B i i ii
+C ii iii iii
+D iii ii iv
+A iv iii i
+B i i ii
+C ii iii iii
+D iii ii iv
+
+=== Page 31 ===
+Expression Data Analysis
+• Preprocessing
+Normalization methods for qPCR data
+Normalization methods for Array data
+Normalization methods for RNA-seq data
+• Inferential statistics
+t-test, Wilcoxon test, ANOVA, …
+31
+
+=== Page 32 ===
+Manuel Garber et.al., Nature Methods, 2011
+1. Different depth of sequencing
+2. Different length of gene(transcription)
+3. Different expression between samples Manuel Garber et.al., Nature Methods, 2011
+Sample A Sample B
+Normalize the raw counts/reads of RNA-seq on a gene
+
+=== Page 33 ===
+RPKM (Reads per kilo base per million mapped reads)
+TPM (Transcript per million)
+CPM, RPKM, FPKM, etc
+RPKM = 𝑁𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑟𝑒𝑎𝑑𝑠 𝑚𝑎𝑝𝑝𝑒𝑑 𝑡𝑜 𝑎 𝑔𝑒𝑛𝑒
+Total number of mapped reads
+106 × gene length in Kbp
+TPM = RPKM
+∑(RPKM) ×106
+CPM/RPM = 𝑁𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑟𝑒𝑎𝑑𝑠 𝑚𝑎𝑝𝑝𝑒𝑑 𝑡𝑜 𝑎 𝑔𝑒𝑛𝑒
+Total number of mapped reads/106
+Counts/Reads Per Million mapped reads
+Reads Per Kilobase per Million mapped reads
+– small RNA-seq
+– poly-A/total RNA-seq
+FPKM = RPKM / 2
+(Fragment)
+(Transcript)
+– paired end RNA-seq
+
+=== Page 34 ===
+I. Select a representative gene set (G):
+double trim the upper and lower percentages
+of the data ( trim M values by 30% and A
+values by 5%)
+II. Calculate a weighted M for each gene (g)
+in the representative gene set (G)
+Normalization for Differential Expression (edgeR)
+Counts adjusted by TMM (Trimmed Mean of M-values)
+K(g) (also called Craw (g)) is the number of reads of
+gene g.
+D is the total number of reads in each sample.
+G is the representative gene set after trimming.
+MA Plot
+Robinson et al., Genome Biology. 2010
+Craw(g) / 2TMM = K(g) / 2TMM
+Counts adjusted by TMM
+M= 𝑙𝑜𝑔2
+𝑡𝑟𝑒𝑎𝑡𝑒𝑑 𝑠𝑎𝑚𝑝𝑙𝑒 𝑐𝑜𝑢𝑛𝑡
+𝑐𝑜𝑛𝑡𝑟𝑜𝑙 𝑠𝑎𝑚𝑝𝑙𝑒 𝑐𝑜𝑢𝑛𝑡
+A= 𝑙𝑜𝑔2 𝑡𝑟𝑒𝑎𝑡𝑒𝑑 𝑠𝑎𝑚𝑝𝑙𝑒 𝑐𝑜𝑢𝑛𝑡 +𝑙𝑜𝑔2(𝑐𝑜𝑛𝑡𝑟𝑜𝑙 𝑠𝑎𝑚𝑝𝑙𝑒 𝑐𝑜𝑢𝑛𝑡)
+2
+𝑤(𝑔) = 𝐷𝑡𝑟𝑒𝑎𝑡𝑚𝑒𝑛𝑡 − 𝐾𝑡𝑟𝑒𝑎𝑡𝑚𝑒𝑛𝑡(𝑔)
+𝐷𝑡𝑟𝑒𝑎𝑡𝑚𝑒𝑛𝑡 × 𝐾𝑡𝑟𝑒𝑎𝑡𝑚𝑒𝑛𝑡 (𝑔) + 𝐷𝑐𝑜𝑛𝑡𝑟𝑜𝑙 − 𝐾𝑐𝑜𝑛𝑡𝑟𝑜𝑙(𝑔)
+𝐷𝑐𝑜𝑛𝑡𝑟𝑜𝑙 × 𝐾𝑐𝑜𝑛𝑡𝑟𝑜𝑙 (𝑔)
+𝑇𝑀𝑀 = ∑𝑔∈𝐺 w 𝑔 × 𝑀(𝑔)
+∑𝑔∈𝐺 𝑤(𝑔)
+
+=== Page 35 ===
+2. Select a reference sample (r) which has the smallest difference from the
+mean of the 75 percent quantile of all genes in each sample.
+3. Select the representative gene set (G): trim the upper and
+lower percentages of data (trim M values by 30% and A value by
+5%).
+1. Cal. Kgj by normalizing to sequencing library size of each sample and remove unexpressed genes.
+4. Calculate the weight for each gene (g) in the representative gene set (G)
+5. Calculation of normalization factor (Cj) for each sample (j)
+6. Normalize each gene’s reads/counts: Craw (g) / Cj = Kg,j / Cj
+Normalization for Differential Expression (edgeR)
+Counts adjusted by TMM (Trimmed Mean of M-values)
+Kgj (also called Craw (g)) is
+the number of
+counts/reads aligned to
+gene g in sample j.
+Dj is the total number of
+reads for sample j.
+r is the reference sample.
+G is the representative
+gene set after trimming.
+
+=== Page 36 ===
+Normalization for Differential Expression (DEseq2)
+RLE (Relative Log Expression)
+1. Calculate the geometric mean of each gene(g)’s raw counts/reads in two samples (black line)
+rank(mean) gene expression
+Steps in RLE normalization:
+2. Divide each gene (g) by the geometric mean
+3. Calculate normalization factor (Cj) for each sample (j)
+4. Normalize each gene’s reads/counts: Craw (g) / Cj = Kg,j / Cj
+Cj is the normalization factor for sample j. N is the total number of samples across all conditions.
+Kgj (also called Craw (g) ) is the number of counts/reads aligned to gene g in sample j.
+
+=== Page 37 ===
+Highlight
+Normalization
+method Type Formula Characteristic Notes
+CPM/
+RPM
+General
+Analysis
+𝑁𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑟𝑒𝑎𝑑𝑠 𝑚𝑎𝑝𝑝𝑒𝑑 𝑡𝑜 𝑎 𝑔𝑒𝑛𝑒
+Total number of mapped reads/106 Normalize to the depth of sequencing Mainly for
+small RNA-seq
+RPKM Normalize to the depth of sequencing
+and the length of each gene —
+FPKM Normalize to the depth of sequencing
+and the length of each gene
+—
+TPM RPKM
+∑(RPKM) ×106 Normalize to the depth of sequencing
+and the length of each gene
+—
+TMM Counts
+Differential
+Expression
+Analysis
+Craw (g) × Cj-1, Cj= 2TMM Normalize to the depth of sequencing edgeR
+RLE Craw (g) × Cj-1, Normalize to the depth of sequencing DESeq2
+Cj is the normalization factor for sample j. Dj is the total number of reads for sample j. N is the total number of samples across all conditions.
+Kgj (also called Craw (g) ) is the number of counts/reads aligned to gene g in sample j.
+Courtesy of Hao-yu Zhang and Xiaofan Liu
+𝑁𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑟𝑒𝑎𝑑𝑠 𝑚𝑎𝑝𝑝𝑒𝑑 𝑡𝑜 𝑎 𝑔𝑒𝑛𝑒
+Total number of map ped reads
+106 × gene length in Kbp
+RPKM / 2
+
+=== Page 38 ===
+Expression Data Analysis
+• Preprocessing
+Normalization methods for qPCR data
+Normalization methods for Array data
+Normalization methods for RNA-seq data
+• Inferential statistics
+t-test, Wilcoxon test, ANOVA, …
+38
+
+=== Page 39 ===
+Highlight
+Inferential Statistics
+Paradigm Parametric test Nonparametric
+Compare two
+unpaired groups Unpaired t-test Mann-Whitney test
+Compare two
+paired groups Paired t-test Wilcoxon test
+Compare 3 or more
+unmatched groups One-way ANOVA Kruskal-Wallis test
+Compare 3 or more
+matched groups Repeated-measures ANOVA Friedman test
+
+=== Page 40 ===
+A volcano plot displays both p values and fold change
+40
+log fold change (treated/untreated)
+p value (treated versus control)
+
+=== Page 41 ===
+Highlight
+Multiple testing correction
+➢ Is it appropriate to set the significance level to p < 0.05?
+➢ re-calculating probabilities obtained from a statistical test
+which was repeated multiple times
+➢ p value → q value (adjusted p value)
+i.e. Bonferroni correction:
+The level for statistical significance is divided by the
+number of measurements, e.g. the criterion becomes:
+q=p*10,000 (q<0.05 == p < 5 x 10-6 )
+The Bonferroni correction is generally considered to be too conservative.
+
+=== Page 42 ===
+42
+High-throughput Genomics Data
+02 RNA-seq
+1. Expression Data
+2. Expression Analysis
+3. Clustering & Co-expression Network
+4. GO and KEGG
+5. Enrichment Analyses
+
+=== Page 43 ===
+Highlight
+Normalization
+method Type Formula Characteristic Notes
+CPM/
+RPM
+General
+Analysis
+𝑁𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑟𝑒𝑎𝑑𝑠 𝑚𝑎𝑝𝑝𝑒𝑑 𝑡𝑜 𝑎 𝑔𝑒𝑛𝑒
+Total number of mapped reads/106 Normalize to the depth of sequencing Mainly for
+small RNA-seq
+RPKM Normalize to the depth of sequencing
+and the length of each gene —
+FPKM Normalize to the depth of sequencing
+and the length of each gene
+—
+TPM RPKM
+∑(RPKM) ×106 Normalize to the depth of sequencing
+and the length of each gene
+—
+TMM Counts
+Differential
+Expression
+Analysis
+Craw (g) × Cj-1, Cj= 2TMM Normalize to the depth of sequencing edgeR
+RLE Craw (g) × Cj-1, Normalize to the depth of sequencing DESeq2
+Cj is the normalization factor for sample j. Dj is the total number of reads for sample j. N is the total number of samples across all conditions.
+Kgj (also called Craw (g) ) is the number of counts/reads aligned to gene g in sample j.
+Courtesy of Hao-yu Zhang and Xiaofan Liu
+𝑁𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑟𝑒𝑎𝑑𝑠 𝑚𝑎𝑝𝑝𝑒𝑑 𝑡𝑜 𝑎 𝑔𝑒𝑛𝑒
+Total number of map ped reads
+106 × gene length in Kbp
+RPKM / 2
+
+=== Page 44 ===
+Highlight
+Inferential Statistics
+Paradigm Parametric test Nonparametric
+Compare two
+unpaired groups Unpaired t-test Mann-Whitney test
+Compare two
+paired groups Paired t-test Wilcoxon test
+Compare 3 or more
+unmatched groups One-way ANOVA Kruskal-Wallis test
+Compare 3 or more
+matched groups Repeated-measures ANOVA Friedman test
+
+=== Page 45 ===
+Highlight
+ 
+➢ Is it appropriate to set the significance level to p < 0.05?
+➢ re-calculating probabilities obtained from a statistical test
+which was repeated multiple times
+➢ p value → q value (adjusted p value)
+i.e. Bonferroni correction:
+The level for statistical significance is divided by the
+number of measurements, e.g. the criterion becomes:
+q=p*10,000 (q<0.05 == p < 5 x 10-6 )
+The Bonferroni correction is generally considered to be too conservative.
+p value V.S. FDR (q value)
+(multiple testing correction)
+
+=== Page 46 ===
+Highlight
+Tools for RNA-seq data analyses
+➢ Raw Data QC and preprocessing
+Fastx toolkit, Samtools, BEDTools, Htseq
+➢ Short reads alignment
+Bowtie, TopHat, STAR, BWA, Novoalign
+➢ Expression studies
+DESeq2, edgeR, Cufflinks, RSEQtools
+➢ Alternative splicing
+rMATS, MISO, Cufflinks, Olego, Augustus
+
+=== Page 47 ===
+47
+Comparison of Differential Expression Analysis Tools
+A comparison of methods for differential
+expression analysis of RNA-seq data
+2013 BMC Bioinformatics
+Statistical methods for identifying
+differentially expressed genes in RNA-
+Seq experiments
+2012 Cell & Bioscience
+
+=== Page 48 ===
+Highlight
+Pipelines for RNA-seq data analyses
+• RNA-seq analysis pipeline
+• lncRNA analysis pipeline
+• A survey of best practices
+for RNA-seq data analysis,
+Genome Biology 2016
+Sjöstedt E , et al. Science 2020
+
+=== Page 49 ===
+49
+Thank you
+for listening
+
+=== Page 50 ===
+50
+Acknowledgement and References
+• Zhaolei Zhang’s bioinformatics lectures
+• (University of Toronto)
+• Jonathan Pevsner’s bioinformatics and functional
+genomics lectures
+• (John Hopkins University)
+• David Mathews’ RNA lectures
+• (University of Rochester)
+• George Weinstock’s Metagenomes lecture
+• (Washington University)
+• Mark Gerstein’s bioinformatics lectures
+• (Yale University)
+• A vision for the future of genomics research
+• (NIH-NHGR)
