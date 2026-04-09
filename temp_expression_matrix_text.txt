@@ -1,0 +1,161 @@
+[githubEdit](https://github.com/lulab/teaching_book/blob/master/part-iii.-ngs-data-analyses/2.rna-seq/2.1.expression-matrix.md)chevron-down
+
+- [Part III. NGS DATA ANALYSES](/teaching/part-iii.-ngs-data-analyses)chevron-right
+- [2.RNA-seq](/teaching/part-iii.-ngs-data-analyses/2.rna-seq)
+
+# 2.1.Expression Matrix
+
+本节教学如何使用featureCounts统计落在每个基因的exons上的reads数量，以及如何将这一步的结果整理成表达矩阵。
+
+## [hashtag](#id-1-files-needed)1) Files Needed
+
+
+- 
+本节需要大家下载一个新的docker镜像[bioinfo_expmat-3.0.tar.gzarrow-up-right](https://cloud.tsinghua.edu.cn/d/ad22768345664924b202/files/?p=%2FDocker%2Fbioinfo_expmat-3.0.tar.gz)，加载镜像的方式和之前相同:
+
+Copy
+```
+docker load -i bioinfo_expmat-3.0.tar.gz #load the image
+
+docker run --name=bioinfo_featurecount -dt -h featurecount_docker --restart unless-stopped -v C:\Users\usrname\Desktop\bioinfo_tsinghua_share:/home/test/share bioinfo/expmat:3.0 /bin/bash
+
+docker exec -it bioinfo_featurecount /bin/bash
+
+cd /home/test
+```
+
+
+- 
+本节中我们会用到两个bam文件也可以直接从 **** [**Files needed** arrow-up-right](https://courses.ncrnalab.org/files)中的**Files/** 路径下的相应文件夹中下载。
+
+
+## [hashtag](#id-2-count-reads-mapped-to-a-gene)2) Count reads mapped to a gene
+
+### [hashtag](#id-2a-sequencing-protocols)2a) Sequencing protocols
+
+测序方法分为非链特异性测序方法和链特异性测序方法两种(Strand specific and nonspecific sequencing protocols)。非链特异性测序方法得到的reads没有方向性，无法判断reads是属于Gene A还是属于Gene B(Antisense RNA)的。链特异性测序方法得到的reads具有方向，可以根据reads方向判断reads是属于Gene A还是属于Gene B。
+
+
+- 
+**非链特异性测序方法**的基本流程如下。
+
+
+测序得到的reads1.fastq和reads2.fastq没有方向性，因此我们将mapping到Gene A的所有reads都归为Gene A的reads。
+
+
+- 
+**链特异性测序方法**的基本流程如下。
+
+
+链特异性测序方法根据reads1.fastq的方向性又分为forward和reverse两种，更多细节请参考课件 PPT。
+
+### [hashtag](#id-2b-count-reads-counts)2b) Count reads/counts
+
+对不同的sequencing protocols，计算每个基因（如Gene A）上的mapped reads的方法也不同。
+
+### [hashtag](#id-2c-how-to-tell-which-sequencing-protocol-being-used)2c) How to tell which sequencing protocol being used
+
+为了准确的计算出每个基因的mapped reads，我们需要知道测序方法的方向性。主要有以下途径。
+
+
+- 
+资料参考：当明确知道测序方法，可以通过经验或查阅资料得知不同测序方法的方向性。
+
+
+- 
+软件判别：当数据测序方法未知时，我们可以通过RseQC软件判断测序方法的方向性。RSeQC中的`infer_experiment.py`命令可以用来确定连特异性，执行该功能时需要用到需要确定的RNA-seq数据mapping后得到的`.SAM/.bam`文件作为输入以及参考基因组`.bed`(12列)。具体操作如下:
+
+
+输出为
+
+从结果中我们可以看到，"1++,1--,2+-,2-+"与"1+-,1-+,2++,2--"的比例几乎相同，有很大的把握认定这个数据是由非链特异性建库得到的。
+
+结果的解释详情可参考[RSeQCarrow-up-right](http://rseqc.sourceforge.net/#download-rseqc)的`infer_experiment.py`部分。
+
+## [hashtag](#id-3-featurecounts)3) featureCounts
+
+### [hashtag](#id-3a-count)3a) Count
+
+featureCounts参数说明：
+
+
+- 
+-s: 是指输入的bam文件的方向性。0代表非链特异测序；1代表reads1.fastq的方向性分为forward；2代表reverse。
+
+- 
+-a: GTF/GFF基因组注释文件
+
+- 
+-p: 表明输入的bam文件是paired end数据处理得到的
+
+- 
+-F: 指定-a注释文件的格式，默认是GTF
+
+- 
+-g: 从注释文件中提取Meta-features信息用于read count，默认是gene_id，取值参考gtf第9列注释信息。
+
+- 
+-t: 从注释文件中提取某部分信息用于read count，其是默认将exon作为一个feature，取值范围是gtf文件中的第3列的值，可选CDS等。
+
+- 
+-o: 输出文件前缀
+
+- 
+-T: 线程数
+
+circle-exclamation
+对于paired end数据，给定`-p`参数后，featureCounts早期版本中默认把一个read pair，即测序文库中的一个RNA fragment count一次。在我们这里用到的subread-2.0.3中，默认按reads的数量来count，即一个read pair会被count两次；如果希望对fragment进行count，还需要额外加上一个`--countReadPairs`参数。 这两种统计方法都是合理的(我们前面给出的read counting的例子对应新版本的默认行为)，但是大家在使用前还是应当注意看一下当前使用的版本的帮助文档(`featureCounts -h`)。
+
+### [hashtag](#id-3b-generate-count-matrix-for-multiple-samples)3b) Generate count matrix for multiple samples
+
+
+- 
+这里我们只提供了一个样本，实际情况中大家可能会需要将多个样本产生的count合并成一个表达矩阵（expression matrix）。
+
+- 
+表达矩阵一般行为基因，列为样本。featureCount的输出前两行为注释信息，第一列为gene id,第7列为count值。大家可以用R语言中读取每一个样本的表达值，再合并成表达矩阵。
+
+
+## [hashtag](#id-4-homework)4) Homework
+
+
+- 
+1) 请阐述 RNA-seq 中归一化基因表达值的几种基本计算方法。
+
+- 
+2) 根据下述图片描述，填出对应选项:
+
+
+- 
+3) 通过软件计算，判断给出文件shape02数据是来自哪一种sequencing protocols （strand nonspecific, strand specific - forward, strand specific - reverse)，并选择合适的参数计算shape02的read count matrix，给出AT1G09530基因(PIF3基因)上的counts数目。
+
+- 
+4) [tumor-transcriptome-demo.tar.gzarrow-up-right](https://cloud.tsinghua.edu.cn/d/ad22768345664924b202/files/?p=%2FFiles%2FPART_III%2F2.RNA-seq%2Fexpression_matrix%2Ftumor-transcriptome-demo.tar.gz)提供了结肠癌(COAD)，直肠癌(READ)和食道癌(ESCA)三种癌症各50个样本的bam文件用featureCount计算产生的结果。请大家编写脚本将这些文件中的counts合并到一个矩阵中(行为基因，列为样本), 计算logCPM的Z-score，并用 heatmap 展示，提供代码和heatmap。根据heatmap可视化的结果，你认为这三种癌症中哪两种癌症的转录组是最相似的?
+
+circle-info
+
+- 
+为了大家在本地机器上计算方便，我们只从featureCount的结果中随机选择了2000个基因。在实际中我们会把所有基因都用上(对于人类如果使用[gencodearrow-up-right](https://www.gencodegenes.org/human/stats_42.html)的注释大约是60000个左右)，或只考虑蛋白编码基因(人类有20000个左右)
+
+- 
+可使用`tar xvzf tumor-transcriptome-demo.tar.gz`解压文件
+
+- 
+在R语言中可以用下面的方式计算CPM:
+
+
+- 
+除此之外利用R包[edgeRarrow-up-right](https://bioconductor.org/packages/release/bioc/html/edgeR.html)的cpm函数计算也是可以的:
+
+
+- 
+一个基因在某样本z-score为该基因在该样本表达量减去该基因平均表达量，除以该基因表达量的标准差
+
+
+- 
+作图建议使用[pheatmaparrow-up-right](https://cran.r-project.org/web/packages/pheatmap/index.html) package,可参考 [I.3.2 Plot with R](/teaching/part-i.-programming-skills/2.r/2.2.plots-with-r#heatmap-plot) 的例子。可视化时可以将>2的z-score clip到2，<-2的z-score类似的clip到-2，避免为了展示出个别outlier的数值，导致绝大部分样本看起来颜色差异不明显的情况。
+
+[Previous2.RNA-seqchevron-left](/teaching/part-iii.-ngs-data-analyses/2.rna-seq)[Next2.2.Differential Expression with Cufflinkschevron-right](/teaching/part-iii.-ngs-data-analyses/2.rna-seq/2.2.differential-expression-with-cufflinks)
+Last updated 2 years ago
+
+Was this helpful?
