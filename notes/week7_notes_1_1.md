@@ -30,6 +30,10 @@
 - **列（columns）**：样本（sample）
 - **值（values）**：每个基因在每个样本中的 reads 计数（raw counts）
 
+> Reads 的本质： 在 RNA 测序中，reads 就是被打碎的 RNA 片段。  
+  因果逻辑： 基因越活跃 $\rightarrow$ 产生的 RNA 越多 $\rightarrow$ 打碎后得到的 reads 就越多。  
+  最终结论： 因此，统计某个基因对应的 reads 数量，就能直接反映出该基因的活跃程度（也就是表达量）。
+
 ---
 
 ## 1) 所需文件与环境准备
@@ -51,10 +55,7 @@ docker load -i bioinfo_expmat-3.0.tar.gz
 # -v C:\...\share:/home/test/share  将本地目录挂载到容器内（数据共享）
 # bioinfo/expmat:3.0           使用的镜像名称和版本
 # /bin/bash                    容器启动后执行的命令
-docker run --name=bioinfo_featurecount -dt -h featurecount_docker \
-  --restart unless-stopped \
-  -v C:\Users\usrname\Desktop\bioinfo_tsinghua_share:/home/test/share \
-  bioinfo/expmat:3.0 /bin/bash
+docker run --name=bioinfo_featurecount -dt -h featurecount_docker --restart unless-stopped -v C:\Users\27978\Desktop\bioinfo_tsinghua_share:/home/test/share bioinfo/expmat:3.0 /bin/bash
 
 # 步骤3：进入正在运行的容器（交互式终端）
 # exec -it  以交互模式执行命令
@@ -83,11 +84,24 @@ cd /home/test
 | **链特异性测序**（Strand specific） | reads 有方向性，可区分来自哪条链 | 有方向（forward 或 reverse） |
 
 **非链特异性测序**：
+
+1. RNA 变双链： 先把原本单链的 RNA 逆转录，做成双链的 cDNA。
+
+2. 两端加接头： 给这些双链 cDNA 的两端接上用于测序的“接头（Adapter）”。
+
+3. 丢失方向性： 因为是对称的双链加接头，后续扩增和测序时，机器根本无法分辨哪一条链才是最初真正的 RNA 模板链。
+
+最终结果： 测出来的结果（reads）是**没有方向（正反链不分）**的。在数据分析时，只要这些 reads 能对应到基因 A 的位置，不管它原来是正链还是反链，统统算作基因 A 的表达量。即：
 - reads1.fastq 和 reads2.fastq 没有方向性
 - 所有 mapping 到 Gene A 区域的 reads 都归为 Gene A 的 reads
 - 问题：无法区分 Gene A 和其反义链上的 Gene B
 
 **链特异性测序**：
+
+1. 连接法（Ligation / Forward）： 这种方法通过特殊设计的实验，强制把测序接头按固定方向“粘”上去。因此最后测出来的 read1 序列方向，跟细胞里真实的 RNA 方向完全一致，在数据分析时属于正向比对，所见即所得。
+
+2. dUTP法（Reverse）： 这是目前最主流的做法。合成第一条链是以 RNA 直接为模板，所以是 antisense 的。它在合成第二条链时混入特殊标记（U），然后在测序前把第二链“精准摧毁”，只拿第一条链去测序。这就导致最后测出来的 read1 序列方向，跟细胞里真实的 RNA 永远是相反的，所以在运行定量软件（如 featureCounts）时，必须明确告诉软件这是“反向（Reverse）”数据，它才能帮你正确算回真实的基因表达量。
+
 - reads 具有方向性，可根据 reads1.fastq 的方向分为 **forward** 和 **reverse** 两种
 - 可以准确区分正义链和反义链上的基因
 
@@ -98,6 +112,16 @@ cd /home/test
 - **非链特异性**：将所有 mapping 到基因区域的 reads 计入（不区分方向）
 - **链特异性 forward**：只计入与基因同向的 reads
 - **链特异性 reverse**：只计入与基因反向的 reads（即 reads1 与基因反向）
+
+一个核心主旨： 面对同一堆测序数据，建库方法不同，软件统计出来的基因表达量会截然不同。
+
+> 三种统计规则（对应 featureCounts 的 -s 参数）：
+
+  -s 0 (非特异性)： 不管方向，只要重叠全算进去（算出来最多）。
+
+  -s 1 (正向/Ligation)： 要求 Read1 的方向与基因方向一致才算。
+
+  -s 2 (反向/dUTP)： 要求 Read1 的方向与基因方向相反才算。
 
 ### 2c. 判断测序方法的方向性
 
@@ -141,6 +165,15 @@ Fraction of reads explained by "1+-,1-+,2++,2--": 0.4977
 
 > 上例中两种比例约为 48% vs 50%，几乎相同，因此判断为**非链特异性**测序数据。
 
+> 第一位数字（1 或 2）：代表这是双端测序里的 Read 1 还是 Read 2。
+
+  第二位符号（+ 或 -）：代表这条 Read 匹配到了参考基因组的 正链 (+) 还是 反链 (-) 上。
+
+  第三位符号（+ 或 -）：代表参考文件里记录的这个基因，原本是长在基因组的 正链 (+) 还是 反链 (-) 上。
+
+> 1. 符号相同 (++ 或 --) = “同向”。比如 1++：Read 1 在正链，基因也在正链。只要两个符号一样，就说明这条 Read 的方向跟基因原本的方向完全一致。
+  2. 符号相反 (+- 或 -+) = “反向”。比如 1+-：Read 1 在正链，但基因其实长在反链。只要两个符号相反，就说明这条 Read 的方向跟基因原本的方向是相反的。
+
 ---
 
 ## 3) featureCounts 工具使用
@@ -177,13 +210,9 @@ cd /home/test
 # -o          指定输出文件路径
 # 最后一个参数是输入的 BAM 文件
 /home/software/subread-2.0.3-source/bin/featureCounts \
-  -s 0 \
-  -p \
-  -t exon \
-  -g gene_id \
+  -s 0 -p -t exon -g gene_id \
   -a GTF/Arabidopsis_thaliana.TAIR10.34.gtf \
-  -o result/Shape01.featurecounts.exon.txt \
-  bam/Shape01.bam
+  -o result/Shape01.featurecounts.exon.txt bam/Shape01.bam
 ```
 
 > ⚠️ **注意 paired-end 数据的计数方式**：
@@ -290,21 +319,27 @@ z.scores <- (log10.CPM.matrix - rowMeans(log10.CPM.matrix)) /
 
 ### 🔑 核心概念
 
-1. **表达矩阵（Expression Matrix）**：
+1. **RNA-seq（转录组测序）的过程与目的**
+RNA-seq 是一种用于全转录组分析的高通量测序技术。其核心流程是提取细胞内的 RNA 分子，将其片段化并逆转录为 cDNA 库，最终通过测序平台生成海量的短序列（Reads）。其主要目的是**通过统计这些 Reads 的数量，精准定量不同基因在特定生理或病理状态下的真实表达水平**，从而揭示细胞的动态基因表达调控网络。
+
+2. **BAM 文件的定义与作用**
+BAM（Binary Alignment Map）是 RNA-seq 原始数据经过“比对（Mapping）”分析后的**核心二进制结果文件**。它完整记录了每一条 Read 在参考基因组上的精确物理坐标、比对质量得分以及正反链方向等信息。由于采用二进制高度压缩，人类无法直接阅读，但它是后续所有定量软件（如 `featureCounts`）将其转化为最终“表达矩阵”的必备输入数据。
+
+3. **表达矩阵（Expression Matrix）**：
    - 行为基因，列为样本，值为 raw counts
    - 是 RNA-seq 下游分析的基础
 
-2. **featureCounts 关键参数**：
+4. **featureCounts 关键参数**：
    - `-s` 参数必须与实际测序方法匹配（0/1/2）
    - `-p` 参数用于 paired-end 数据
    - 注意不同版本对 read pair 的计数方式不同
 
-3. **链特异性判断**：
+5. **链特异性判断**：
    - 使用 `infer_experiment.py` 自动判断
    - 两种比例接近 50:50 → 非链特异性
    - 某种比例接近 100% → 链特异性（forward 或 reverse）
 
-4. **标准化方法**：
+6. **标准化方法**：
    - **CPM**：校正测序深度，适用于 small RNA-seq
    - **RPKM/FPKM**：校正测序深度 + 基因长度
    - **TPM**：推荐用于样本间比较（各样本 TPM 之和均为 10⁶）
