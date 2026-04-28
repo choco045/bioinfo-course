@@ -143,7 +143,11 @@ makeTagDirectory input/ip    input/ip.part.bam
 makeTagDirectory input/input input/input.part.bam
 ```
 
-> **说明**："tag" 在 ChIP-seq 中即指二代测序的 read，是 HOMER 工具的习惯叫法。
+> **说明**："tag" 在 ChIP-seq 中即指二代测序的 read，是 HOMER 工具的习惯叫法。  
+  在 ChIP-seq 和二代测序的语境下，“tag” 其实就是指测序得到的 “read”（短序列片段）。  
+  测序仪把目标 DNA 打碎后读取出来的无数个短小 DNA 片段（也就是通常说的 reads），在被 HOMER 这个软件处理时，就被统一换了个名字叫 tag。  
+  把这些小片段（reads/tags）重新贴回完整的基因组地图上，如果某个位置贴上去的片段特别多，堆成了一座山峰（peak），软件就会去统计这里的 "Total Tags"。所以这里的“总 tag 数”，其实指的就是“到底有多少个 DNA 碎片在这个特定的位置堆积了起来”。  
+  中间文件的作用： makeTagDirectory，其实就是把装满 reads 的 BAM 文件，转换并整理成 HOMER 喜欢的数据格式，方便它后续去数到底有多少个 tag 堆成了山峰。
 > 运行后，`input/ip` 和 `input/input` 目录中会生成多个 `.tags.tsv` 文件和 `tagInfo.txt`（记录测序总 tag 数等信息，供后续步骤使用）。
 
 #### 第二步：Peak Calling
