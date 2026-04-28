@@ -185,6 +185,7 @@ findMotifsGenome.pl output/part.peak sacCer2 output/part.motif.output -len 8
 >   - 转录因子：50 bp（主要 motif）或 200 bp（主要 + 协同 motif）
 >   - 组蛋白修饰：500–1000 bp
 > - `-S <#>`（默认 25）：每个长度要发现的 motif 数量。
+> - Motif 是蛋白质特异性识别并结合的那段特定 DNA 序列模式。转录因子的结合具有序列偏好性，这种特定的序列偏好性就是用 motif 来描述的。len 是被结合的那段核心序列（密码）本身的长度; size 是在 peak 中心划定的寻找 motif 的搜索范围。因为测序和数据分析会有一定的误差，软件找到的 Peak（山峰）往往比实际的核心结合位点要宽。所以我们需要以 Peak 的中心为基准，向两边截取一段特定长度的区域（比如默认的 200 bp 范围），然后集中精力在这个 size 范围里，去寻找长度为 len 的结合序列。
 
 最重要的输出文件：`/home/test/chip-seq/output/part.motif.output/homerResults.html`
 
