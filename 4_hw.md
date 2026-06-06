@@ -7,38 +7,39 @@
 
 ## 1) qPCR 数据集二分类分析：用 R 完成数据预处理、PCA 可视化、数据集划分、模型选择/特征选择/调参、AUROC 计算和 ROC 曲线绘制。
 
-选择随机森林作为分类器，用 `caret::rfe` 做递归特征消除，用 5 折交叉验证搜索 `mtry`，最后在预留 20% 测试集上计算 AUROC 并保存 PCA 图和 ROC 曲线。
+**R代码：**
 
 ```r
+# 环境准备
 library(caret)
 library(randomForest)
 library(pROC)
 library(ggplot2)
 
-# 读取 qPCR 数据；假设 qPCR_data.csv 和脚本位于同一工作目录。
+# 读取 qPCR 数据
 qpcr <- read.csv("qPCR_data.csv", stringsAsFactors = FALSE, check.names = FALSE)
 
-# 第 1 列为样本 id。
+# 第 1 列为样本 id
 sample_id <- qpcr[[1]]
 
-# 第 2-12 列为 11 个基因表达量特征。
+# 第 2-12 列为 11 个基因表达量特征
 x.raw <- qpcr[, 2:12]
 
-# 第 13 列为样本标签：NC 为健康人，HCC 为肝癌病人。
+# 第 13 列为样本标签，使用 factor() 将其转换为分类变量，并指定 levels ：NC 为健康人，HCC 为肝癌病人
 y <- factor(qpcr[[13]], levels = c("NC", "HCC"))
 
-# 确保所有特征为数值型，避免字符型数字影响后续计算。
+# 确保所有特征为数值型，避免字符型数字影响后续计算
 x.raw <- as.data.frame(lapply(x.raw, as.numeric))
 
-# 用每个特征的中位数补全缺失值；中位数对异常值更稳健。
+# 用每个特征的中位数补全缺失值
 for (j in seq_along(x.raw)) {
   x.raw[is.na(x.raw[[j]]), j] <- median(x.raw[[j]], na.rm = TRUE)
 }
 
-# 对特征做 Z-score scaling。
+# 对特征做 Z-score scaling，scale() 函数执行的是标准化（减去均值，除以标准差）
 x <- scale(x.raw, center = TRUE, scale = TRUE)
 
-# PCA 可视化。
+# PCA 可视化（降维，打包成数据框）
 pca <- prcomp(x, center = FALSE, scale. = FALSE)
 pca.df <- data.frame(
   sample_id = sample_id,
@@ -47,11 +48,11 @@ pca.df <- data.frame(
   label = y
 )
 
+# 绘图与保存
 p.pca <- ggplot(pca.df, aes(PC1, PC2, color = label)) +
   geom_point(size = 2.6, alpha = 0.85) +
   theme_bw() +
   labs(title = "PCA of qPCR data", color = "Group")
-
 ggsave("qPCR_PCA_R.png", p.pca, width = 5, height = 4, dpi = 300)
 
 # 划分数据集：80% 训练，20% 测试；按类别分层抽样。
@@ -63,21 +64,9 @@ y.train <- y[train.idx]
 y.test <- y[-train.idx]
 
 # 用随机森林做 RFE 特征选择；评价指标为 ROC。
-ctrl.rfe <- rfeControl(
-  functions = rfFuncs,
-  method = "cv",
-  number = 5
-)
+ctrl.rfe <- rfeControl(functions = rfFuncs, method = "cv", number = 5)
 rfFuncs$summary <- twoClassSummary
-
-rfe.fit <- rfe(
-  x.train,
-  y.train,
-  sizes = 1:ncol(x.train),
-  rfeControl = ctrl.rfe,
-  metric = "ROC"
-)
-
+rfe.fit <- rfe(x.train, y.train, sizes = 1:ncol(x.train), rfeControl = ctrl.rfe, metric = "ROC")
 selected.features <- predictors(rfe.fit)
 print(selected.features)
 
@@ -90,9 +79,7 @@ ctrl.train <- trainControl(
   savePredictions = "final"
 )
 
-tune.grid <- expand.grid(
-  mtry = seq_len(length(selected.features))
-)
+tune.grid <- expand.grid(mtry = seq_len(length(selected.features)))
 
 rf.fit <- train(
   x.train[, selected.features, drop = FALSE],
@@ -124,6 +111,30 @@ plot(roc.obj, print.auc = TRUE, col = "#2563EB", lwd = 2, main = "ROC curve of q
 abline(a = 0, b = 1, lty = 2, col = "gray60")
 dev.off()
 ```
+
+**数据可视化结果：**
+-
+-
+-
+-
+-
+-
+-
+-
+-
+
+**ROC曲线：**
+-
+-
+-
+-
+-
+-
+-
+-
+-
+**结果分析：**
+通过 PCA 可视化发现，NC 和 HCC 两组样本存在一定程度的重叠，说明该 qPCR 数据集在特征空间中线性可分性有限。基于随机森林的 RFE 特征选择共筛选出 2 个关键特征（miR.122, SNORD3B），最终模型在测试集上的 AUROC 为 0.72。该结果符合数据本身的分布特征，模型具有一定的分类预测能力，且因特征数量精简，模型具有较好的泛化稳定性。
 
 ## 2) 随机森林中树的数量是不是一个需要通过交叉验证调整的超参数，为什么？什么是随机森林的 OOB error？它和 bootstrapping 有什么关系？
 
